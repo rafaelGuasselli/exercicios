@@ -11,7 +11,7 @@ while True:
         mod_y = y % 10
         if (mod_x + mod_y + extra >= 10): 
             amountOfCarries += 1
-        extra = floor(mod_x + mod_y + extra)/10
+        extra = floor((mod_x + mod_y + extra)/10)
         x = floor(x/10)
         y = floor(y/10)
     if (amountOfCarries == 0):

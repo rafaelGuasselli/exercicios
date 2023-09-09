@@ -11,5 +11,8 @@ def quadrante(x, y):
         print("quarto")
 
 while True: 
-    x, y = map(int, input().split())
-    quadrante(x, y)
+    try:
+        x, y = map(int, input().split())
+        quadrante(x, y)
+    except(EOFError):
+        break

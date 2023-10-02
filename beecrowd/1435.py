@@ -2,15 +2,13 @@ def ex(entrada):
     tamanho = int(entrada)
     for l in range(0, tamanho):
         for c in range(0, tamanho):
-            print("{:3d}".format(min(l, c, tamanho-l-1, tamanho-c-1) + 1), end=" ")
+            valor = min(l + 1, c + 1, tamanho - l, tamanho - c)
+            print("{:3d}".format(valor), end=" " if c < tamanho - 1 else "")
         print()
 
-count = 0
 while True:
     entrada = input()
     if entrada == "0":
         break
-    if count > 0: 
-        print()
     ex(entrada)
-    count += 1
+    print()

@@ -1,7 +1,6 @@
 def ex(entrada):
     numVoluntariosMergulharam, numVoltaram = map(int, entrada.split())
     arrayDosQueVoltaram = list(map(int, input().split()))
-    arrayDosQueNãoVoltaram = []
 
     nenhum = True
     for i in range(1, numVoluntariosMergulharam + 1):

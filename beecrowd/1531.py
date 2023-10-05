@@ -18,11 +18,11 @@ def fastDoublingFib(n, m):
 			return (c % m, d % m)
 		else:
 			return (d % m, (c + d) % m)
-# 
+
 def ex(entrada):
 	n, m = map(int, entrada.split())
 	periody = findPissanoPeriody(m)
-	
+
 	fib1 = int(fastDoublingFib(n, periody)[0])
 	fib2 = int(fastDoublingFib(fib1, m)[0]) 
 	print(fib2)

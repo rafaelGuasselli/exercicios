@@ -1,25 +1,24 @@
 def ex(entrada):
-    numParticipantes, numProblemas = map(int, entrada.split())
+    numeroParticipantes, numeroProblemas = map(int, input().split())
 
-    participante = [0] * numParticipantes
-    problemas = [0] * numProblemas
+    qtdDoQueResolveuMais = 0
+    qtdDoQueResolveuMenos = 112387719283789
+    ninguemResolveuTodos = True
+    todosOsProblemasForaResolvidosPorPeloMenosUm = False
+    problemas = [0] * numeroProblemas
+    
+    for i in range(0, numeroParticipantes):
+        problemas = list(map(int, input().split()))
+        soma = 0
+        for j in range(0, numeroProblemas):
+            soma += problemas[j]
+        qtdDoQueResolveuMais = max(soma, qtdDoQueResolveuMais)
+        qtdDoQueResolveuMenos = min(soma, qtdDoQueResolveuMenos)
+        if soma == numeroProblemas:
+            ninguemResolveuTodos = False
+        
+    ninguemResolveuTodos = qtdDoQueResolveuMais < numeroProblemas
+    todosResolveramPeloMenosUm = qtdDoQueResolveuMais > 0
 
-    for j in range(0, numParticipantes):
-        problemasMapa = list(map(int, input().split()))
-        for i in range(0, numProblemas):
-            participante[j] += problemasMapa[i]
-            problemas[i] += problemasMapa[i]
 
-    ninguemResolveuTodosOsProblemas = max(participante) < numProblemas
-    todosOsProblemasForamResolvidosPorPeloMenosUmaPessoa = min(problemas) > 0
-    naoHaProblemaQueTodosResolveram = max(problemas) < numParticipantes
-    todosResolveramAoMenosUmProblema = min(participante) > 0
-
-    totalDeEventos = int(ninguemResolveuTodosOsProblemas) + int(todosOsProblemasForamResolvidosPorPeloMenosUmaPessoa) + int(naoHaProblemaQueTodosResolveram) + int(todosResolveramAoMenosUmProblema)
-    print(totalDeEventos)
-
-while True:
-    entrada = input()
-    if entrada == "0 0":
-        break
-    ex(entrada)
+            

@@ -8,20 +8,18 @@ def getValue(matriz, pos):
 	return False
 
 def robo(matriz, pos):
-	y, x = pos
-	queue = criarListaDeAdjacentes(y, x)
-	ultimoY, ultimoX = y, x
-	matriz[y][x] = 0
-	
+	queue = [pos]
+	ultimoY, ultimoX = pos
+
 	while len(queue) > 0:
 		lado = queue.pop()
 		if getValue(matriz, lado):
 			y, x = lado
 			matriz[y][x] = 0
+			ultimoY, ultimoX = lado
+	
 			queue.clear()
 			queue.extend(criarListaDeAdjacentes(y, x))
-			ultimoY, ultimoX = y, x
-			
 	return (ultimoY, ultimoX)
 
 numeroLinhas, numeroColunas = map(int, input().split())

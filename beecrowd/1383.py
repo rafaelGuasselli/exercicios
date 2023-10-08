@@ -8,11 +8,11 @@ def testarMatriz(matriz):
 				return False
 			if testeColuna[matriz[c][l]]:
 				return False
-			if testeQuadrado[matriz[((l // 3) * 3) + (c // 3)][c % 3]]:
+			if testeQuadrado[matriz[((l // 3) * 3) + (c // 3)][((l // 3) * 3) + (c % 3)]]:
 				return False
 			testeLinha[matriz[l][c]] = 1
 			testeColuna[matriz[c][l]] = 1
-			testeQuadrado[matriz[((l // 3) * 3) + (c // 3)][c % 3]] = 1
+			testeQuadrado[matriz[((l // 3) * 3) + (c // 3)][((l // 3) * 3) + (c % 3)]] = 1
 	return True
 
 def ex():

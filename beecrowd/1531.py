@@ -13,7 +13,6 @@ def fastDoublingFib(n, m):
 		a, b = fastDoublingFib(n // 2, m)
 		c = (a * ((b << 1) - a))
 		d = (a * a + b * b)
-		print(a,b,c,d)
 		if n % 2 == 0:
 			return (c % m, d % m)
 		else:

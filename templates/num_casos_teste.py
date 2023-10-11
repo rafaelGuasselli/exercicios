@@ -1,6 +1,6 @@
 def ex():
-    print()
+	print()
 
 numCasosTeste = int(input())
 for i in range(0, numCasosTeste):
-    ex()
+	ex()

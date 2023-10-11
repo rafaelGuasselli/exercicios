@@ -1,11 +1,11 @@
 def ex(entrada):
-    print()
+	print()
 
 casoDeTesteNum = 1
 while True:
-    entrada = input()
-    if entrada == "0":
-        break
-    print("Teste {:n}:".format(casoDeTesteNum))
-    ex(entrada)
-    casoDeTesteNum += 1
+	entrada = input()
+	if entrada == "0":
+		break
+	print("Teste {:n}:".format(casoDeTesteNum))
+	ex(entrada)
+	casoDeTesteNum += 1

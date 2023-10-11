@@ -1,10 +1,10 @@
 def ex(entrada):
-    print()
+	print()
 
 
 while True:
-    try:
-        entrada = input()
-        ex(entrada)
-    except EOFError:
-        break
+	try:
+		entrada = input()
+		ex(entrada)
+	except EOFError:
+		break

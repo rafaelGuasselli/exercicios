@@ -1,11 +1,4 @@
 {
-	"editor.insertSpaces": false,
 	"editor.detectIndentation": false,
-	"files.associations": {
-		"random": "cpp",
-		"iostream": "cpp",
-		"array": "cpp",
-		"ostream": "cpp",
-		"cmath": "cpp"
-	}
+	"editor.insertSpaces": false,
 }

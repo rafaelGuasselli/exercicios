@@ -1,3 +1,5 @@
+//TODO: Acho que da pra simplificar esse código.
+
 def ex(entrada):
 	numeroLinhas, numeroColunas, pos = map(int, entrada.split())
 	ventiladores = []

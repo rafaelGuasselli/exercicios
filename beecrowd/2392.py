@@ -10,7 +10,7 @@ for i in range(0, qtdPedras):
     entra = False
     for j in range(0, numSapos):
         posSapo, taxaPuloSapo = sapos[j]
-        if ((i - (posSapo - taxaPuloSapo)) % taxaPuloSapo) == 0:
+        if ((posSapo - i) % taxaPuloSapo) == 0:
             entra = True
             break
     print(int(entra))

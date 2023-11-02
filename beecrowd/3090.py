@@ -3,7 +3,6 @@ n, m, qtdSoldado = map(int, input().split())
 segundoExercito = 0
 primeiroExercito = 0
 
-
 for i in range(0, qtdSoldado):
 	x, y, poder = map(int, input().split())
 	#Acha a equação que gera a linha diagonal

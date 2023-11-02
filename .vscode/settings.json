@@ -1,4 +1,8 @@
 {
 	"editor.detectIndentation": false,
 	"editor.insertSpaces": false,
+	"files.associations": {
+		"iostream": "cpp",
+		"ostream": "cpp"
+	},
 }

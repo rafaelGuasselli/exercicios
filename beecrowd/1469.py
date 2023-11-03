@@ -1,63 +1,31 @@
 import sys
 sys.setrecursionlimit(10 ** 8)
 
-def dfs(node, menorIdade):
-	idades = [menorIdade]
+def dfs(node):	
+	node["menorIdade"] = 101
+
 	for patrao in node["patroes"]:
-		idades.append(patrao["idade"])
-		idades.append(dfs(patrao, menorIdade))
-	return min(idades)
+		node["menorIdade"] =  min(node["menorIdade"], patrao["menorIdade"], patrao["idade"])
 
-def swap(empregados, a, b):
-	nodeA = empregados[a-1]
-	nodeB = empregados[b-1]
-
-	patroesA = nodeA["patroes"].copy()
-	patroesB = nodeB["patroes"].copy()
-	empregadosA = nodeA["empregados"].copy()
-	empregadosB = nodeB["empregados"].copy()
-
-	for patrao in patroesA:
-		patrao["empregados"].remove(nodeA)
-		patrao["empregados"].append(nodeB)
-
-	for patrao in patroesB:
-		patrao["empregados"].remove(nodeB)
-		patrao["empregados"].append(nodeA)
-
-	for empregado in empregadosA:
-		empregado["patroes"].remove(nodeA)
-		empregado["patroes"].append(nodeB)
-
-	for empregado in empregadosB:
-		empregado["patroes"].remove(nodeB)
-		empregado["patroes"].append(nodeA)
-	
-	nodeA["patroes"], nodeB["patroes"] = nodeB["patroes"], nodeA["patroes"]
-	nodeA["empregados"], nodeB["empregados"] = nodeB["empregados"], nodeA["empregados"]
-	
-	if nodeA["patroes"] == nodeA:
-		nodeA["patroes"], nodeB["empregados"] = nodeB["empregados"], nodeA["patroes"]
-
-	if nodeB["patroes"] == nodeB:
-		nodeB["patroes"], nodeA["empregados"] = nodeA["empregados"], nodeB["patroes"]
+	for empregado in node["empregados"]:
+		dfs(empregado)
 
 def empregar(empregados, patrao, empregado):
 	empregados[empregado - 1]["patroes"].append(empregados[patrao - 1])
 	empregados[patrao - 1]["empregados"].append(empregados[empregado - 1])
+	dfs(empregados[patrao - 1])
 
-def makeNode(id, idade):
+def makeNode(idade):
 	return {
-		"id": id,
 		"idade": idade,
+		"menorIdade": 101,
 		"patroes": [],
 		"empregados": [],
 	}
 		
-
 def ex(entrada):
 	qtdEmpregados, qtdRelacoes, qtdInstrucoes = map(int, entrada.split())
-	
+
 	idades = []
 	linha = input().split()
 	while(len(linha) > 2):
@@ -66,7 +34,7 @@ def ex(entrada):
 
 	empregados = []
 	for i in range(0, qtdEmpregados):
-		empregados.append(makeNode(i+1, idades[i]))
+		empregados.append(makeNode(idades[i]))
 
 	patrao, empregado = map(int, linha)
 	empregar(empregados, patrao, empregado)
@@ -79,12 +47,17 @@ def ex(entrada):
 		
 		if "P" in instrucao:
 			empregado = int(instrucao[2:])
-			menorIdade = dfs(empregados[empregado - 1], 101)
-			print("*" if menorIdade == 101 else menorIdade)
+			print("*" if empregados[empregado-1]["menorIdade"] == 101 else empregados[empregado-1]["menorIdade"])
 		elif "T" in instrucao:
 			a, b = map(int, instrucao[1:].split())
-			swap(empregados, a, b)
 
+			empregados[a-1]["idade"], empregados[b-1]["idade"] = empregados[b-1]["idade"], empregados[a-1]["idade"]
+			empregados[a-1], empregados[b-1] = empregados[b-1], empregados[a-1]
+			empregados[a-1]["menorIdade"] = 101
+			empregados[b-1]["menorIdade"] = 101
+
+			dfs(empregados[a-1])
+			dfs(empregados[b-1])
 while True:
 	try:
 		entrada = input()

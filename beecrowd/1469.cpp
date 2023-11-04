@@ -1,106 +1,91 @@
-#include <iostream>
-#include <vector>
-#include <array>
-#include <algorithm>
-
+#include<bits/stdc++.h>
 using namespace std;
-const int MAX_EMPLOYEES = 100000;
 
+struct Empregado{
+	int id;
+	int idade = 101;
+	vector<Empregado *> patroes;
 
-struct Node {
-    int idade;
-    int menorIdade; 
-    vector<Node*> patroes;
-    vector<Node*> empregados;
+	Empregado(int id, int idade){
+		this->id = id;
+		this->idade = idade;
+	}
+
+	void empregar(Empregado* p){
+		p->patroes.push_back(this);
+	}
 };
 
-void dfs(Node* node) {
-    node->menorIdade = 101;
+int idades[500];
+int visitados[500];
 
-    for (Node* patrao : node->patroes) {
-        node->menorIdade = min(node->menorIdade, patrao->menorIdade);
-    }
+int dfs(Empregado* node, int menorIdade) {
+	visitados[(*node).id] = 1;
+	for (int i = 0; i < (*node).patroes.size(); i++) {
+		Empregado patrao = *(*node).patroes[i];
+		if (visitados[patrao.id] == 0) {
+			menorIdade = min(patrao.idade, menorIdade);
+			menorIdade = min(patrao.idade, dfs(&patrao, menorIdade));
+		}
+	}
 
-    for (Node* empregado : node->empregados) {
-        dfs(empregado);
-    }
+	return menorIdade;
 }
 
-void empregar(vector<Node>& empregados, int patrao, int empregado) {
-    empregados[empregado - 1].patroes.push_back(&empregados[patrao - 1]);
-    empregados[patrao - 1].empregados.push_back(&empregados[empregado - 1]);
-}
 
-Node makeNode(int idade) {
-    Node node;
-    node.idade = idade;
-    node.menorIdade = 101;
-    return node;
-}
+int ex(int qtdEmpregados, int qtdRelacoes, int qtdInstrucoes){
+	memset(visitados, 0, sizeof visitados);
 
-int main() {
-    int qtdEmpregados, qtdRelacoes, qtdInstrucoes;
-    cin >> qtdEmpregados >> qtdRelacoes >> qtdInstrucoes;
+	for (int i = 0; i < qtdEmpregados; i++) {
+		int idade; cin >> idade;
+		idades[i] = idade;
+	}
 
-    array<int, MAX_EMPLOYEES> idades;
-    for (int i = 0; i < qtdEmpregados; i++) {
-        int idade;
-        cin >> idade;
-        idades[i] = idade;
-    }
+	vector<Empregado *> empregados;
+	for (int i = 0; i < qtdEmpregados; i++) {
+		empregados.push_back(new Empregado(i, idades[i]));
+	}
 
-    vector<Node> empregados;
-    for (int i = 0; i < qtdEmpregados; i++) {
-        empregados.push_back(makeNode(idades[i]));
-    }
+	for (int i = 0; i < qtdRelacoes; i++) {
+		int patraoId, empregadoId;
+		cin >> patraoId >> empregadoId;
+		(*empregados[patraoId-1]).empregar(empregados[empregadoId-1]);
+	}
+	
+	for (int i = 0; i < qtdInstrucoes; i++) {
+		char instrucao;
+		cin >> instrucao;
 
-    int patrao, empregado;
-    cin >> patrao >> empregado;
-    empregar(empregados, patrao, empregado);
+		if (instrucao == 'P') {
+			int indexEmpregado; cin >> indexEmpregado;
+			memset(visitados, 0, sizeof visitados);
+			int menorIdade = dfs(empregados[indexEmpregado - 1], 101);
 
-    vector<int> lista;
-    for (int i = 0; i < qtdRelacoes - 1; i++) {
-        cin >> patrao >> empregado;
-        lista.push_back(empregado - 1);
-        empregar(empregados, patrao, empregado);
-    }
-
-    for (int i = 0; i < qtdEmpregados; i++) {
-        if (find(lista.begin(), lista.end(), i) == lista.end()) {
-            dfs(&empregados[i]);
-        }
-    }
-
-    for (int i = 0; i < qtdInstrucoes; i++) {
-        string instrucao;
-        cin >> instrucao;
-
-        if (instrucao[0] == 'P') {
-            int empregado; cin >> empregado;
-			if (empregados[empregado - 1].menorIdade == 101) {
+			if (menorIdade == 101) {
 				cout<<"*"<<endl;
 			} else {
-				cout<<empregados[empregado - 1].menorIdade<<endl;
+				cout<<menorIdade<<endl;
 			}
-        } else if (instrucao[0] == 'T') {
-            int a, b;
-            cin >> a >> b;
+		} else if (instrucao == 'T') {
+			int a, b;
+			cin >> a >> b;
 
-            swap(empregados[a - 1].idade, empregados[b - 1].idade);
-            swap(empregados[a - 1], empregados[b - 1]);
-            empregados[a - 1].menorIdade = 101;
-            empregados[b - 1].menorIdade = 101;
+			swap((*empregados[a - 1]).idade, (*empregados[b - 1]).idade);	
+			swap(empregados[a - 1], empregados[b - 1]);
+		}
+	}
 
-            if (empregados[b - 1].idade < empregados[b - 1].menorIdade && empregados[a - 1].idade < empregados[b - 1].idade) {
-                dfs(&empregados[a - 1]);
-                dfs(&empregados[b - 1]);
-            }
-            if (empregados[a - 1].idade < empregados[a - 1].menorIdade && empregados[b - 1].idade < empregados[a - 1].idade) {
-                dfs(&empregados[a - 1]);
-                dfs(&empregados[b - 1]);
-            }
-        }
-    }
+	return 0;
+}
 
-    return 0;
+int main(){
+	int qtdEmpregados, qtdRelacoes, qtdInstrucoes;
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+
+	while(cin >> qtdEmpregados >> qtdRelacoes >> qtdInstrucoes) {
+		ex(qtdEmpregados, qtdRelacoes, qtdInstrucoes);
+	}
+
+	return 0;
 }

@@ -1,10 +1,8 @@
 #include <iostream>
 #include <vector>
-#include <array>
 #include <algorithm>
 
 using namespace std;
-const int MAX_EMPLOYEES = 500;
 
 struct Empregado{
 	int idade = 101;
@@ -23,6 +21,8 @@ struct Empregado{
 };
 
 void dfs(Empregado* node) {
+	(*node).menorIdade = 101;
+
 	for (int i = 0; i < (*node).patroes.size(); i++) {
 		int menor = min((*(*node).patroes[i]).menorIdade, (*(*node).patroes[i]).idade);
 		int menor2 = min((*node).menorIdade, menor);
@@ -35,14 +35,10 @@ void dfs(Empregado* node) {
 }
 
 
-int ex(){
-	int qtdEmpregados, qtdRelacoes, qtdInstrucoes;
-	cin >> qtdEmpregados >> qtdRelacoes >> qtdInstrucoes;
-
-	int idades[MAX_EMPLOYEES];
+int ex(int qtdEmpregados, int qtdRelacoes, int qtdInstrucoes){
+	int idades[500];
 	for (int i = 0; i < qtdEmpregados; i++) {
-		int idade;
-		cin >> idade;
+		int idade; cin >> idade;
 		idades[i] = idade;
 	}
 
@@ -51,17 +47,17 @@ int ex(){
 		empregados.push_back(new Empregado(idades[i]));
 	}
 
-	vector<int> lista;
 	for (int i = 0; i < qtdRelacoes; i++) {
 		int patraoId, empregadoId;
 		cin >> patraoId >> empregadoId;
-		lista.push_back(empregadoId - 1);
 		(*empregados[patraoId-1]).empregar(empregados[empregadoId-1]);
 	}
 
-	for (int i = 0; i < qtdEmpregados; i++) {
-		dfs(empregados[i]);
-	}
+    for (int i = 0; i < qtdEmpregados; i++) {
+		if ((*empregados[i]).patroes.size() == 0) {
+			dfs(empregados[i]);
+		}
+    }
 	
 	for (int i = 0; i < qtdInstrucoes; i++) {
 		char instrucao;
@@ -85,8 +81,14 @@ int ex(){
 			(*empregados[a - 1]).menorIdade = 101;
 			(*empregados[b - 1]).menorIdade = 101;
 
-			dfs(empregados[a - 1]);
-			dfs(empregados[b - 1]);
+			if ((*empregados[b - 1]).idade < (*empregados[b - 1]).menorIdade && (*empregados[a - 1]).idade < (*empregados[b - 1]).idade) {
+				dfs(empregados[a - 1]);
+				dfs(empregados[b - 1]);
+			} else if ((*empregados[a - 1]).idade < (*empregados[a - 1]).menorIdade && (*empregados[b - 1]).idade < (*empregados[a - 1]).idade) {
+				dfs(empregados[a - 1]);
+				dfs(empregados[b - 1]);
+			}
+
 		}
 	}
 
@@ -94,6 +96,14 @@ int ex(){
 }
 
 int main(){
-	ex();
+	int qtdEmpregados, qtdRelacoes, qtdInstrucoes;
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+
+
+	while(cin >> qtdEmpregados >> qtdRelacoes >> qtdInstrucoes) {
+		ex(qtdEmpregados, qtdRelacoes, qtdInstrucoes);
+	}
+
 	return 0;
 }

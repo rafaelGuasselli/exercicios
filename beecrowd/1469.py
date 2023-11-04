@@ -8,9 +8,6 @@ def dfs(node, visitados, menorIdade):
 			menorIdade = min(dfs(patrao, visitados, menorIdade), patrao["idade"])
 	return menorIdade
 
-def empregar(empregados, patrao, empregado):
-	empregados[empregado - 1]["patroes"].append(empregados[patrao - 1])
-
 def makeNode(id, idade):
 	return {
 		"id": id, 
@@ -20,22 +17,15 @@ def makeNode(id, idade):
 		
 def ex(entrada):
 	qtdEmpregados, qtdRelacoes, qtdInstrucoes = map(int, entrada.split())
-
-	idades = []
-	linha = input().split()
-	while(len(linha) > 2):
-		idades.extend(list(map(int, linha)))
-		linha = input().split()
-
+	idades = list(map(int, input().split()))
+	
 	empregados = []
 	for i in range(0, qtdEmpregados):
 		empregados.append(makeNode(i, idades[i]))
 
-	patrao, empregado = map(int, linha)
-	empregar(empregados, patrao, empregado)
-	for i in range(0, qtdRelacoes-1):
+	for i in range(0, qtdRelacoes):
 		patrao, empregado = map(int, input().split())
-		empregar(empregados, patrao, empregado)
+		empregados[empregado - 1]["patroes"].append(empregados[patrao - 1])
 
 	for i in range(0, qtdInstrucoes):
 		instrucao = input()

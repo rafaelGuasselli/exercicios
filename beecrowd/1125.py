@@ -1,53 +1,37 @@
-def rerankear(colocacaoNasCorridas, sistema, qtdPilotos):
-	pontos = []
-	for i in range(0, qtdPilotos):
-		pontos.append([0, i + 1])
-
-	for colocacao in colocacaoNasCorridas:
-		for i in range(0, sistema[0]):
-			piloto = colocacao[i] - 1
-			pontos[piloto][0] += sistema[1:][i] 
-	pontos.sort(reverse=True)
-	return pontos
-
-def acharCampeoes(pontos):
+def acharCampeoes(resultados, sistemaDePontuacao, qtdPilotos):
+	pontosRecalculados = [0] * qtdPilotos
+	for resultado in resultados:
+		for i in range(qtdPilotos):
+			posPilotoAtual = resultado[i] - 1
+			if posPilotoAtual < len(sistemaDePontuacao):
+				pontosRecalculados[i] += sistemaDePontuacao[posPilotoAtual]
+	
+	maiorPontuacao = 0
 	campeoes = []
 
-	for i in range(1, len(pontos)+1):
-		campeoes.append(pontos[i-1][1])
-		if i < len(pontos) and pontos[i-1][0] > pontos[i][0]:
-			break
-	campeoes.sort()
+	for i in range(qtdPilotos):
+		pontuacaoPiloto = pontosRecalculados[i]
+		if pontuacaoPiloto > maiorPontuacao:
+			maiorPontuacao = pontuacaoPiloto
+			campeoes = []
+			
+		if pontuacaoPiloto == maiorPontuacao:
+			campeoes.append(i+1)
 	return campeoes
 
-
 def ex(entrada):
-	qtdCorridas, qtdPilotos = map(int, entrada.split())
-	colocacaoNasCorridas = []
-	for i in range(0, qtdCorridas):
-		colocacao = list(map(int, input().split()))
-		colocacaoNasCorridas.append(colocacao)
+	qtdGrandesPremios, qtdPilotos = map(int, entrada.split())
 
-	sitemasDePontos = []
-	qtdSistemasDePontos = int(input())
-	for i in range(0, qtdSistemasDePontos):
-		sistema = list(map(int, input().split()))
-		sitemasDePontos.append(sistema)
+	resultados = []
+	for i in range(qtdGrandesPremios):
+		resultadoCorrida = list(map(int, input().split()))
+		resultados.append(resultadoCorrida)
 
-	for sistema in sitemasDePontos:
-		ranking = rerankear(colocacaoNasCorridas, sistema, qtdPilotos)
-		print(ranking)
-		campeoes = acharCampeoes(ranking)
-		if len(campeoes) == 1:
-			print(campeoes[0])
-		else:
-			for campeao in campeoes:
-				print(campeao, end=" " if campeao != campeoes[len(campeoes) - 1] else "")
-			print()
-
-
-
-
+	qtdSistemasPontuacao = int(input())
+	for i in range(qtdSistemasPontuacao):
+		sistemaPontuacao = list(map(int, input().split()))[1:]
+		campeoes = acharCampeoes(resultados, sistemaPontuacao, qtdPilotos)
+		print(*campeoes)
 
 while True:
 	entrada = input()

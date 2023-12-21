@@ -2,7 +2,7 @@ from functools import cmp_to_key
 
 def mod(a, m):
 	ma = a % m
-	if a < 0:
+	if a < 0 and ma > 0:
 		ma -= m
 	return ma
 

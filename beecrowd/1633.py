@@ -1,8 +1,7 @@
-import io, os, sys
+import io, os, sys, heapq
 input = io.BytesIO(os.read(0,os.fstat(0).st_size)).readline
 
 def ex(entrada):
-	import heapq
 	qtdProcessos = int(entrada)
 	processos = []
 
@@ -32,9 +31,10 @@ def ex(entrada):
 
 	sys.stdout.write(str(total) + "\n")
 
-while True:
-	try:
-		entrada = input()
-		ex(entrada)
-	except:
-		break
+if __name__ == "__main__":
+	while True:
+		try:
+			entrada = input()
+			ex(entrada)
+		except:
+			break

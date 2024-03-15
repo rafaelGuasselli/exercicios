@@ -1,5 +1,4 @@
-//TODO: Acho que da pra simplificar esse código.
-
+#TODO: Acho que da pra simplificar esse código.
 def getValue(matriz, pos):
 	y, x = pos
 	if x >= 0 and y >= 0 and y < len(matriz) and x < len(matriz[y]):

@@ -1,9 +1,10 @@
 def id(palavra):
-	palavra = ''.join(x for x in palavra if x != " ")
+	palavra = palavra.rstrip(" ")
 	palavra = list(palavra)
 
 	palavra.sort()
 	palavra = "".join(palavra)
+ 
 	return hash(palavra)
 
 def combinacoes(grupo):
@@ -41,13 +42,12 @@ def ex():
 	while True:
 		try:
 			entrada = input()
-			if len(entrada) > 0:
-				palavras.append(entrada)
-			else:
+			if len(entrada) == 0:
 				break
+			palavras.append(entrada)
 		except:
 			break
-	return acharAnagramas(palavras)
+	acharAnagramas(palavras)
 
 qtdTestes = int(input())
 breakLine = False

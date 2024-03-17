@@ -1,8 +1,6 @@
 def inverter(direcao):
 	return (direcao + 1) % 2
 
-TEMPO_MOVIMENTO = 10
-
 qtdPessoas = int(input())
 pessoas = []
 
@@ -12,6 +10,7 @@ for i in range(qtdPessoas):
 
 pessoas.sort()
 
+TEMPO_MOVIMENTO = 10
 tempoAtual, direcaoAtual = pessoas[0]
 pessoasEsperando = [[], []]
 
@@ -24,8 +23,7 @@ while len(pessoas + pessoasEsperando[0] + pessoasEsperando[1]) > 0:
 		pulaTempo = not aPessoaJaChegou() and faltaPessoasEsperando()
 		proximoTempo, proximaDirecao = proximaPessoa = pessoas.pop(0)
 		pessoasEsperando[proximaDirecao].append(proximaPessoa)
-		if pulaTempo:
-			tempoAtual = proximoTempo
+		if pulaTempo: tempoAtual = proximoTempo
 	
 	vaiPraMesmaDirecao = not len(pessoasEsperando[direcaoAtual]) == 0
 	if vaiPraMesmaDirecao:
@@ -36,4 +34,5 @@ while len(pessoas + pessoasEsperando[0] + pessoasEsperando[1]) > 0:
 		tempo, direcao = pessoasEsperando[direcaoAtual].pop(0)
 		tempoAtual = tempoAtual + TEMPO_MOVIMENTO
 		pessoasEsperando[direcaoAtual] = []
+  
 print(tempoAtual)	

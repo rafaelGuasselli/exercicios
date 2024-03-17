@@ -94,4 +94,14 @@
 		"typeindex": "cpp",
 		"variant": "cpp"
 	},
+	"editor.tokenColorCustomizations": {
+		"textMateRules": [
+		  {
+			"scope": "meta.function-call.generic.python",
+			"settings": {
+			  "foreground": "#fffd8b"
+			}
+		  }
+		]
+	}
 }

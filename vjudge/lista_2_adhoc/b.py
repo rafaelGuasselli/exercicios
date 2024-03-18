@@ -29,8 +29,9 @@ while naoEstaVazia(pessoas + pessoasEsperando[0] + pessoasEsperando[1]):
 	
 	vaiPraMesmaDirecao = naoEstaVazia(pessoasEsperando[direcaoAtual])
 	if vaiPraMesmaDirecao:
-		tempo, direcao = pessoasEsperando[direcaoAtual].pop(0)
+		tempo, direcao = pessoasEsperando[direcaoAtual][-1]
 		tempoAtual = tempo + TEMPO_MOVIMENTO
+		pessoasEsperando[direcaoAtual] = []
 	else:
 		direcaoAtual = inverter(direcaoAtual)
 		tempoAtual = tempoAtual + TEMPO_MOVIMENTO

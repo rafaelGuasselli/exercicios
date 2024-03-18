@@ -14,27 +14,28 @@ for i in range(qtdPessoas):
 pessoas.sort()
 
 TEMPO_MOVIMENTO = 10
-tempoAtual, direcaoAtual = pessoas[0]
-pessoasEsperando = [[], []]
+tempoAtual, direcaoAtual = 0, pessoas[0][1]
+ultimaPessoaEsperando = [None, None]
 
-while naoEstaVazia(pessoas + pessoasEsperando[0] + pessoasEsperando[1]):
+while naoEstaVazia(pessoas) or ultimaPessoaEsperando[0] or ultimaPessoaEsperando[1]:
 	aPessoaJaChegou = lambda: pessoas[0][0] <= tempoAtual
-	faltaPessoasEsperando = lambda: len(pessoasEsperando[0] + pessoasEsperando[1]) == 0
+	faltaPessoasEsperando = lambda: not (ultimaPessoaEsperando[0] or ultimaPessoaEsperando[1])
 	
 	while naoEstaVazia(pessoas) and (aPessoaJaChegou() or faltaPessoasEsperando()):
-		pulaTempo = not aPessoaJaChegou() and faltaPessoasEsperando()
-		proximoTempo, proximaDirecao = proximaPessoa = pessoas.pop(0)
-		pessoasEsperando[proximaDirecao].append(proximaPessoa)
-		if pulaTempo: tempoAtual = proximoTempo
+		pulaTempo = (not aPessoaJaChegou()) and faltaPessoasEsperando()
+		ultimoTempo, ultimaDirecao = ultimaPessoa = pessoas.pop(0)
+		ultimaPessoaEsperando[ultimaDirecao] = ultimaPessoa
+		if pulaTempo: tempoAtual = ultimoTempo
 	
-	vaiPraMesmaDirecao = naoEstaVazia(pessoasEsperando[direcaoAtual])
+	vaiPraMesmaDirecao = ultimaPessoaEsperando[direcaoAtual]
 	if vaiPraMesmaDirecao:
-		tempo, direcao = pessoasEsperando[direcaoAtual][-1]
+		tempo, direcao = ultimaPessoaEsperando[direcaoAtual]
 		tempoAtual = tempo + TEMPO_MOVIMENTO
-		pessoasEsperando[direcaoAtual] = []
+		ultimaPessoaEsperando[direcaoAtual] = None
 	else:
 		direcaoAtual = inverter(direcaoAtual)
 		tempoAtual = tempoAtual + TEMPO_MOVIMENTO
-		pessoasEsperando[direcaoAtual] = []
+		ultimaPessoaEsperando[direcaoAtual] = None
+  
   
 print(tempoAtual)	

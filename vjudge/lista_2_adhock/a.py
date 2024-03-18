@@ -10,10 +10,23 @@ def id(palavra):
 def ex():
 	qtdLinhas, qtdColunas = map(int, input().split())
 	matrix = []
+	celulasEspeciais = [[] for i in range(qtdLinhas)]
+	linhas = ""
+	colunas = ""
+	diagonais1 = ""
+	diagonais2 = ""
 
 	for i in range(qtdLinhas):
 		linha = input()
 		matrix.append(linha)
+		linhas += linha
+	
+	for c in range(qtdColunas):
+		for l in range(qtdLinhas):
+			colunas += matrix[l][c]
+	
+	for i in range()
+
 
 	qtdAnagramas = int(input())
 	anagramas = []
@@ -22,14 +35,9 @@ def ex():
 		anagrama = input()
 		anagramas.append(anagrama)
 
-	count = 0
-	for anagrama in anagramas:
-		idAnagrama = id(anagrama)
-		for l in range(qtdLinhas):
-			for c in range(qtdColunas - (len(anagrama) - 1)):
-				palavra = matrix[l][:c]
-				if id(palavra) == idAnagrama:
-					count += 1
+	
+
+
 	print(count)
 
 ex()

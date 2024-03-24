@@ -8,25 +8,17 @@
 using namespace std;
 
 struct Time{
-	int id, penalidade;
+	int id = -1;
+	int penalidade = 0;
 	set<int> resolvidos;
 };
 
 int main() {
-	string entrada;
-	getline(cin, entrada);
+	string entrada; getline(cin, entrada);
 	int qtdTestes = stoi(entrada);
 
 	getline(cin, entrada);
 	for (int i = 0; i < qtdTestes; i++) {
-		Time times[QTD_TIMES];
-		int penalidades[QTD_TIMES][QTD_QUESTOES] = {};
-
-		for (int i = 0; i < QTD_TIMES; i++) {
-			times[i].id = -1;
-			times[i].penalidade = 0;
-		}
-
 		while(true){
 			string line;
 			if (!getline(cin, line)) {
@@ -37,16 +29,16 @@ int main() {
 				break;
 			}
 
-			stringstream input(line);
+			Time times[QTD_TIMES];
+			int penalidades[QTD_TIMES][QTD_QUESTOES] = {};
 			int time, questao, tempo;
 			char evento;
 
+			stringstream input(line);
 			input>>time>>questao>>tempo>>evento;
 
 			time -= 1;
 			questao -= 1;
-
-
 			times[time].id = time+1;
 
 			if (evento == 'C' && times[time].resolvidos.find(questao) == times[time].resolvidos.end()) {

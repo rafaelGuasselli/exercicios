@@ -19,6 +19,9 @@ int main() {
 
 	getline(cin, entrada);
 	for (int i = 0; i < qtdTestes; i++) {
+		Time times[QTD_TIMES];
+		int penalidades[QTD_TIMES][QTD_QUESTOES] = {};
+		
 		while(true){
 			string line;
 			if (!getline(cin, line)) {
@@ -29,8 +32,6 @@ int main() {
 				break;
 			}
 
-			Time times[QTD_TIMES];
-			int penalidades[QTD_TIMES][QTD_QUESTOES] = {};
 			int time, questao, tempo;
 			char evento;
 
@@ -49,7 +50,7 @@ int main() {
 			}
 		}
 
-		int n = sizeof(times)/sizeof(times[0]);
+		int n = sizeof(times)/sizeof(times[0]); 
 		stable_sort(times, times + n, [](Time a, Time b) {
 			return a.penalidade < b.penalidade;
 		});

@@ -3,38 +3,56 @@
 
 using namespace std;
 
-
-long long factorial(int a){
-	long long totalPossibilidades = 1;
-	for (int i = 2; i <= a; i++) {
-		totalPossibilidades *= i;
-	}
-
-	return totalPossibilidades;
-}
+struct Restricao{
+	int a, b, distancia;
+};
 
 int main() {
-	while(true) {
-		int qtdCadeiras, qtdRestricoes; cin>>qtdCadeiras>>qtdRestricoes;
+	while (true) {
+		int qtdAdolescentes, qtdRestricoes; cin>>qtdAdolescentes>>qtdRestricoes;
+		int permutacaoAtual[qtdAdolescentes];
+		vector<Restricao> restricoes;
 
-		if (qtdCadeiras == qtdRestricoes && qtdRestricoes == 0) {
+		if (qtdAdolescentes == 0 & qtdRestricoes == 0) {
 			break;
 		}
 
-
-		long long totalPossibilidades = factorial(qtdCadeiras);
-
-
-		for (int i = 0; i < qtdRestricoes; i++) {
-			int a, b, c; cin>>a>>b>>c;
-
-			for (int j = 1; j <= abs(c); j++) {
-				totalPossibilidades /= factorial(qtdCadeiras-j);
-			}
+		for (int i = 0; i < qtdAdolescentes; i++) {
+			permutacaoAtual[i] = i;
 		}
 
-		cout<<totalPossibilidades<<endl;
-	}
+		for (int i = 0; i < qtdRestricoes; i++) {
+			int a, b, distancia; cin>>a>>b>>distancia;
+			restricoes.push_back({a, b, distancia});
+		}
 
+		int possibilidades = 0;
+
+		do{
+			bool falha = false;
+			for (Restricao restricao: restricoes) {
+				int indexA = permutacaoAtual[restricao.a];
+				int indexB = permutacaoAtual[restricao.b];
+				
+				if (restricao.distancia < 0) {
+					if (abs(indexA-indexB) < abs(restricao.distancia)) {
+						falha = true;
+						break;	
+					}
+				} else {
+					if (abs(indexA-indexB) > abs(restricao.distancia)) {
+						falha = true;
+						break;
+					}
+				}
+			} 
+
+			if (!falha) {
+				possibilidades++;
+			}
+		} while(next_permutation(permutacaoAtual, permutacaoAtual+qtdAdolescentes));
+
+		cout<<possibilidades<<endl;
+	}
 	return 0;
 }

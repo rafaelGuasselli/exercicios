@@ -9,19 +9,25 @@ struct Time{
 
 
 int main() {
-	while(true){
-		string line;
-		if (!getline(cin, line)) {
-			break;
+		set<int> caminhoes;
+		caminhoes.insert(2);
+		caminhoes.insert(3);
+		caminhoes.insert(4);
+		caminhoes.insert(5);
+
+		set<int> combinacoes;
+		for (auto it = caminhoes.begin(); it != --caminhoes.end(); it) {
+			int caminhaoA = *it;
+			
+			for (auto itb = ++it; itb != caminhoes.end(); ++itb) {
+				caminhaoA = caminhaoA*(*itb);
+				combinacoes.insert(caminhaoA);
+			}
 		}
 
-		if (line == "" || line == "\0") {
-			break;
+		for (auto c:combinacoes) {
+			cout<<c<<endl;
 		}
-
-		cout<<line<<endl;
-	}
-
 
 	return 0;
 }

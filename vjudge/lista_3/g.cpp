@@ -12,13 +12,13 @@ int main() {
 			break;
 		}
 
-		map<int, set<vector<int>>> conjuntos;
+		map<int, set<vector<int>, greater<vector<int>>>> conjuntos;
 		set<int> somas;
 		somas.insert(0);
 		for (int i = 0; i < qtdNumeros; i++) {
 			int novoNum; cin>>novoNum;
 			set<int> novasSomas;
-			map<int, set<vector<int>>> novosConjuntos;
+			map<int, set<vector<int>, greater<vector<int>>>> novosConjuntos;
 
 			for (int numero: somas) {
 				if (novoNum+numero > objetivo) {
@@ -53,7 +53,7 @@ int main() {
 		if (conjuntos[objetivo].size() == 0) {
 			cout<<"NONE"<<endl;
 		} else {
-			for (vector<int> numeros: conjuntos[objetivo]) {
+			for (auto numeros: conjuntos[objetivo]) {
 				for(auto it = numeros.begin(); it != numeros.end(); it++) {
 					if(it != numeros.begin()) cout<<"+";
 					cout<<*it;

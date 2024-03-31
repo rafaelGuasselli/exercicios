@@ -9,25 +9,24 @@ struct Time{
 
 
 int main() {
-		set<int> caminhoes;
-		caminhoes.insert(2);
-		caminhoes.insert(3);
-		caminhoes.insert(4);
-		caminhoes.insert(5);
+		set<vector<int>, greater<vector<int>>> conjunto;
+		vector<int> a = {1,2,3};
+		vector<int> b = {1,2,3};
+		vector<int> c = {1,7,8};	
+		vector<int> d = {27,7,8};
+		vector<int> e = {1,2, 3, 4, 5, 6, 7};
 
-		set<int> combinacoes;
-		for (auto it = caminhoes.begin(); it != --caminhoes.end(); it) {
-			int caminhaoA = *it;
-			
-			for (auto itb = ++it; itb != caminhoes.end(); ++itb) {
-				caminhaoA = caminhaoA*(*itb);
-				combinacoes.insert(caminhaoA);
+		conjunto.insert(a);
+		conjunto.insert(b);
+		conjunto.insert(c);
+		conjunto.insert(d);
+		conjunto.insert(e);
+		
+		for (vector<int> vetor: conjunto) {
+			for (int numero: vetor) {
+				cout<<numero<<" ";
 			}
+			cout<<endl;
 		}
-
-		for (auto c:combinacoes) {
-			cout<<c<<endl;
-		}
-
 	return 0;
 }

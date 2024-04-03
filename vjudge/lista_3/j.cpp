@@ -1,15 +1,18 @@
 #include <iostream>
-
+#define ll long long
 using namespace std;
 
-long long fib[1000];
-long long possibilidades;
-
+ll fib[1000];
 int qtdAs[1000];
+
 int maiorFibPossivel;
 bool parar = false;
 
-void buscar(long long atual, int profundidade) {
+void buscar(ll atual, int profundidade) {
+	if (atual < 1) {
+		return;
+	}
+
 	if (atual == 1) {
 		for (int i = 0; i < profundidade; i++) {
 			for (int j = 0; j < qtdAs[i]; j++){
@@ -21,12 +24,11 @@ void buscar(long long atual, int profundidade) {
 
 		cout<<endl;
 		parar = true;
-		return;
 	} else {
 		for (int i = maiorFibPossivel; i > 1; i--) {
 			if (atual % fib[i] == 0) {
+				maiorFibPossivel = i;
 				qtdAs[profundidade] = i-1;
-
 				buscar(atual/fib[i], profundidade+1);
 
 				if (parar) {
@@ -38,19 +40,16 @@ void buscar(long long atual, int profundidade) {
 }
 
 int main() {	
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	cin>>possibilidades;
+	ll possibilidades; cin>>possibilidades;
 	
-
 	fib[0] = 1;
 	fib[1] = 1;
 	
 	for (int i = 2; i < 1000; i++) {
 		fib[i] = fib[i-1] + fib[i-2]; 
 
-		if (fib[i] >= possibilidades) {
-			maiorFibPossivel = i;
+		if (fib[i] > possibilidades) {
+			maiorFibPossivel = i - 1;
 			break;
 		}
 	}	

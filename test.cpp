@@ -39,16 +39,8 @@ set<string> buscar(string parteA, string parteB) {
 }
 
 int main() {	
-	dicionario["12"] = "a";
-	dicionario["1"] = "b";
-	dicionario["2"] = "c";
-	dicionario["3"] = "d";
-	dicionario["23"] = "e";
-
-	set<string> traducoes = buscar("123", "");
-	for (string traducao: traducoes) {
-		cout<<traducao<<endl;
-	}
+	long a; cin>>a;
+	cout<<a<<endl;
 
 	return 0;
 }

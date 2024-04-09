@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int pos[8];
+vector<int> pos = {1,2,3,4,5,6,7,8};
 bool testar(){
 	set<int> colunas;
 	for (int i = 0; i < 8; i++) {
@@ -25,10 +25,47 @@ bool testar(){
 	return diagonaisA.size() == 8 && diagonaisB.size() == 8;
 }
 
-int main() {	
-	for (int i = 0; i < 8; i++) {
-		cin>>pos[i];
-	}
+int main() {
+	set<vector<int>> solucoes;	
+	do{
+		if(testar()) {
+			solucoes.insert(pos);
+		}
+	} while(next_permutation(pos.begin(), pos.end()));
+
+	string line;
+	int count = 1;
+	while (true) {
+		if (!getline(cin, line)) {
+			break;
+		}
+
+		if (line.empty()) {
+			break;
+		}
+
+		stringstream entrada(line);
+
+		int menor = 8;
+		int original[8];
+		for (int i = 0; i < 8; i++) {
+			entrada>>original[i];
+		}
+
+		for (auto solucao: solucoes) {
+			int diferencas = 0;
+			for (int i = 0; i < 8; i++) {
+				if (solucao[i] != original[i]) {
+					diferencas++;
+				} 
+			}
+
+			menor = min(menor, diferencas);
+		}
+
+		cout<<"Case "<<count<<": "<<menor<<endl;
+		count++;
+	}	
 
 	return 0;
 }

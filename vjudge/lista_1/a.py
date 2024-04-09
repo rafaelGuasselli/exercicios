@@ -38,8 +38,12 @@ def ex():
 		for l in range(qtdLinhas):
 			colunas += matrix[l][c]
 
-	#1 2 3 4 5
-	#1 2 3 2 1
+	#(0, a) -> (1, a+1)
+
+	#(0,0)(0,1)(0,2)
+	#(1,0)(1,1)(1,2)
+	#(2,0)(2,1)(2,2)
+
 	for l in range(qtdLinhas):
 		for c in range(qtdColunas):
 			middleDiagonal = (qtdColunas+qtdLinhas) // 2

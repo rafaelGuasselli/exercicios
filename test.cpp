@@ -1,19 +1,20 @@
-#include <iostream>
-<<<<<<< HEAD
 #include <bits/stdc++.h>
-#include <algorithm>
+#define ll long long
 
 using namespace std;
 
-int main() {	
-	string a = "AAB";
-	string b = "BB";
-	cout<<a.compare(b)<<endl;
-=======
-#include <vector>
 
 int main() {
-    
->>>>>>> 0affce09b11ac7ff17371b76fd3b89af8d2f56c9
+    set<int> a;
+	a.insert(1);
+	a.insert(2);
+	a.insert(3);
+	a.insert(10);
+	a.insert(12);
+	a.insert(20);
+
+	cout<<*a.lower_bound(-12031)<<endl;
+	cout<<*prev(a.lower_bound(-12031), 1)<<endl;
+
 	return 0;
 }

@@ -11,26 +11,27 @@ int main() {
 			break;
 		}
 
-		multiset<int> manha;
-		multiset<int> noite;
+		vector<int> manha;
+		vector<int> noite; 
 
 		for (int i = 0; i < qtdEntregas; i++) {
 			int m, n; cin>>m>>n;
-			manha.insert(m);
-			noite.insert(n);
+			manha.push_back(m);
+			noite.push_back(n);
 		}
+
+		sort(manha.begin(), manha.end(), greater<int>());
+		sort(noite.begin(), noite.end());
+		
 
 		ll extra = 0;
-		for (auto it = manha.rbegin(); it != manha.rend(); it++) {
-			int atual = *it;
-			auto parIt = --noite.end();
-
-			int e1 = abs(limiteHoraExtra - (atual + par));
-			noite.erase(parIt);
-			extra += e1;
+		auto noiteIt = noite.begin();
+		for (int manhaAtual: manha) {
+			extra += taxaHoraExtra * max(0, (*noiteIt + manhaAtual) - limiteHoraExtra);
+			noiteIt++;
 		}
 
-		cout<<extra*taxaHoraExtra<<endl;
+		cout<<extra<<endl;
 	}
 
 	return 0;

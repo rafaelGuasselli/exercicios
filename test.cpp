@@ -1,23 +1,19 @@
 #include <iostream>
+<<<<<<< HEAD
 #include <bits/stdc++.h>
 #include <algorithm>
 
 using namespace std;
 
-
 int main() {	
-	multiset<int> a;
+	string a = "AAB";
+	string b = "BB";
+	cout<<a.compare(b)<<endl;
+=======
+#include <vector>
 
-	a.insert(1);
-	a.insert(1);
-	a.insert(1);
-	a.insert(1);
-	a.insert(2);
-	
-
-	bool b = a.lower_bound(23)==a.end();
-	cout<<b<<endl;
-	cout<<*a.lower_bound(23)<<endl;
-
+int main() {
+    
+>>>>>>> 0affce09b11ac7ff17371b76fd3b89af8d2f56c9
 	return 0;
 }

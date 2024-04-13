@@ -15,8 +15,12 @@ int main() {
 		multiset<int> noite;
 
 		for (int i = 0; i < qtdEntregas; i++) {
-			int m, n; cin>>m>>n;
+			int m; cin>>m;
 			manha.insert(m);
+		}
+
+		for (int i = 0; i < qtdEntregas; i++) {
+			int n; cin>>n;
 			noite.insert(n);
 		}
 
@@ -34,8 +38,8 @@ int main() {
 
 			int noiteAtual1 = *noiteIt1;
 			int noiteAtual2 = *noiteIt2;
-			int extra1 = abs(noiteAtual1 + manhaAtual - limiteHoraExtra);
-			int extra2 = abs(noiteAtual2 + manhaAtual - limiteHoraExtra);
+			int extra1 = noiteAtual1 + manhaAtual - limiteHoraExtra;
+			int extra2 = noiteAtual2 + manhaAtual - limiteHoraExtra;
 			if (extra1 <= extra2) {
 				extra += max(0, (noiteAtual1 + manhaAtual) - limiteHoraExtra);
 				noite.erase(noiteIt1);

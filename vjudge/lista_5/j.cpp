@@ -37,7 +37,6 @@ int main() {
 		nxt[i] = i - somarDigitos(i);
     }
 
-
 	for (ll i = maior; i > 0; i--) {
 		gertrudePos -= frequencia[i];
 		frequencia[nxt[i]] += frequencia[i];

@@ -5,13 +5,15 @@ using namespace std;
 
 
 int main() {
-	bitset<10> a[10];
+	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> queue;
 
-	a[2].set(3);
-	a[3] = a[2];
-	a[3].set(4);
-
-	cout<<a[3].test(3)<<" "<<a[2].test(4)<<endl;
+	queue.push({1, 0});
+	queue.push({1, 3});
+	queue.push({0, 4});
+	
+	while (queue.size() > 0) {
+		cout<<queue.top().second<<endl;queue.pop();
+	}
 
 	return 0;
 }

@@ -95,8 +95,6 @@ def ex():
 		anagramas.append(anagrama)
 
 	
-
-
 	print(count)
 
 ex()

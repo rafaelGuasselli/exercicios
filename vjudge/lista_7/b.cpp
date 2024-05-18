@@ -2,49 +2,82 @@
 
 using namespace std;
 
+char matrix[100][100];
+bool visited[100][100];
+int row = 0;
+int column = 0;
 
-int edges[100][100];
-int dominates[]
-int marked[100];
-int parent[100];
-int size;
 
-int dfs(int edge, int parent) {	
-	marked[edge] = 1;
-	
-	if (parent[edge] == -1) {
-		parent[edge] = parent;
-	} else {
-		parent[edge] = parent[parent];	
-	}
+int dfs(int l, int c) {
+    if (l < 0 || c < 0 || l >= row || c >= column) {
+        return 0;
+    }
 
-	for (int i = 0; i < size) {
-		if (!marked[i] && edges[edge][i]) {
-			dfs(i, edge);
-		}
-	}
+    if (matrix[l][c] == 'L') {
+        return 0;
+    }
+
+    if (visited[l][c]) {
+        return 0;
+    }
+
+    visited[l][c] = true;
+    int soma = 1;
+    vector<pair<int, int>> lookUp = {{l+1, c}, {l-1, c}, {l, c+1}, {l, c-1}, {l+1, c+1}, {l+1, c-1}, {l-1, c+1}, {l-1, c-1}};
+    
+
+    for (auto look: lookUp) {
+        soma += dfs(look.first, look.second);
+    }
+
+    return soma;
 }
 
+
 int main() {
-	int nTests; cin>>nTests;
+    string line;
+    getline(cin, line);
+    stringstream inp(line);
 
-	for (int t = 0; t < nTests; t++) {
-		cin>>size;
+    int nTest; inp>>nTest;
+    getline(cin, line);
+    for (int t = 0; t < nTest; t++) {
+        row = 0;
 
-		for (int l = 0; l < size; l++) {
-			for (int c = 0; c < size; c++) {
-				cin>>edges[l][c];
-			}
-		}
+        if (t > 0) {
+            cout<<endl;
+        }
 
-		for (int i = 0; i < size; i++) {
-			parent[i] = -1;
-			marked[i] = 0;
-		}
+        while (!cin.eof()) {     
+            getline(cin, line);
 
-		parent[0] = 0;
+            if (line.size() == 0 || line == "" || line.empty()) {
+                break;
+            }
 
-	}
+            if (isdigit(line[0])) {
+                for (int l = 0; l < row; l++) {
+                    for (int c = 0; c < column; c++) {
+                        visited[l][c] = false;
+                    }
+                }
+
+                stringstream inp(line);
+                int l, c; inp>>l>>c;
+                l -= 1; c -= 1;
+
+                cout<<dfs(l, c)<<endl;
+                continue;
+            } else {
+                for (int c = 0; c < line.size(); c++) {
+                    matrix[row][c] = line[c];
+                }
+
+                row++;
+                column = line.size();
+            }
+        }
+    }
 
     return 0;
 }

@@ -22,7 +22,7 @@ def ex():
 	linhas = ""
 	colunas = ""
 	diagonais1 = ""
-	diagonais2 = ""
+	diagonais2 = "" 
 
 	testDiagonais = list(" " * (qtdColunas*qtdLinhas))
 

@@ -5,7 +5,10 @@ using namespace std;
 
 
 int main() {
-	vector<int> a; a.reserve(10);
-	cout<<a[2]<<endl;
+	priority_queue<int> a;
+	a.push(3);
+	a.push(2);
+	a.push(10);
+	cout<<a.top()<<endl;
 	return 0;
 }

@@ -1,54 +1,21 @@
 #include<bits/stdc++.h>
+#define pipic pair<int, pair<int, char>>
 
 using namespace std;
 
-
 int nEdges;
-map<string, int> code;
 string from, to, word; 
-vector<vector<pair<pair<int, char>, pair<int, int>>>> adj;
 
-vector<string> words;
-vector<set<char>> charTo;
-vector<int> distTo;
-vector<map<char, int>> pathFrom;
-
+map<string, int> code;
+vector<vector<pipic>> adj;
+vector<map<char, int>> distTo;
 
 void addVertice(string name) {
 	if (code.find(name) == code.end()) {
-		code[name] = words.size();
-		words.push_back(name);
+		code[name] = adj.size();
 		adj.push_back({});
-		distTo.push_back(10000000);
-		charTo.push_back({});
-		pathFrom.push_back({});
+		distTo.push_back({});
 	}
-}
-
-int dfs(int vertice, char lastChar) {
-	if (vertice == 1) {
-		pathFrom[vertice][lastChar] = 1;
-		return 1;
-	}
-
-	if (charTo[vertice].find(lastChar) == charTo[vertice].end()) {
-		charTo[vertice].insert(lastChar);
-
-		for (pair<pair<int, char>, pair<int, int>> &edge: adj[vertice]) {
-			int valid = edge.first.first;
-			char currentChar = edge.first.second; 
-			int weight = edge.second.first;
-			int to = edge.second.second;
-			
-			if (!valid && currentChar != lastChar) {
-				int validEdge = dfs(to, currentChar);
-				pathFrom[vertice][lastChar] = max(pathFrom[vertice][lastChar], validEdge);
-				edge.first.first = max(edge.first.first, validEdge);
-			}
-		}
-	}
-
-	return pathFrom[vertice][lastChar];
 }
 
 int main() {
@@ -61,13 +28,9 @@ int main() {
 		
 		adj.clear();
 		code.clear();
-		words.clear();
 		distTo.clear();
-		charTo.clear();
-		pathFrom.clear();
 
 		cin>>from>>to;
-
 		addVertice(from);
 		addVertice(to);
 
@@ -79,44 +42,50 @@ int main() {
 			int u = code[from];
 			int v = code[to];
 
-			adj[u].push_back({{0, word[0]}, {(int)word.size(), v}});
-			adj[v].push_back({{0, word[0]}, {(int)word.size(), u}});
+			adj[u].push_back({(int)word.size(), {v, word[0]}});
+			adj[v].push_back({(int)word.size(), {u, word[0]}});
+
+			distTo[u][word[0]] = 100000000;
+			distTo[v][word[0]] = 100000000;
 		}
 
-		priority_queue<pair<pair<int, char>, pair<int, int>>> q;
-		dfs(0, ' ');
-		q.push({{0, ' '}, {0, 0}});
-		distTo[0] = 0;
+		priority_queue<pipic, vector<pipic>, greater<pipic>> q;
+		q.push({0, {0, '*'}});
+		distTo[0]['*'] = 0;
 
 		while (!q.empty()) {
-			auto current = q.top(); q.pop();
-			char lastChar = current.first.second;
-			int dist = current.second.first;
-			int u = current.second.second;
+			pipic current = q.top(); q.pop();
+			int dist = current.first;
+			int vertice = current.second.first;
+			char currentChar = current.second.second;
 
-			if (dist == distTo[u]) {
-				for (auto child: adj[u]) {
-					int valid = child.first.first;
-					char currentChar = child.first.second;
-					int weight = child.second.first;
-					int v = child.second.second;
+			if (dist == distTo[vertice][currentChar]) {
+				for (pipic edge: adj[vertice]) {
+					int weight = edge.first;
+					int child = edge.second.first;
+					char nextChar = edge.second.second;
 
-					if (!pathFrom[v][lastChar]) {
+					if (currentChar == nextChar) {
 						continue;
 					}
 
-					if (dist + weight < distTo[v]) {
-						distTo[v] = dist + weight;
-						q.push({{0, currentChar}, {distTo[v], v}});
+					if (dist + weight < distTo[child][nextChar]) {
+						distTo[child][nextChar] = dist + weight;
+						q.push({distTo[child][nextChar], {child, nextChar}});
 					}
 				}
 			}
 		}
 
-		if (distTo[1] == 10000000) {
+		int smallestDist = 10000000;
+		for (pair<char, int> dist:distTo[1]) {
+			smallestDist = min(smallestDist, dist.second);
+		}
+
+		if (smallestDist == 10000000) {
 			cout<<"impossivel"<<endl;
 		} else {
-			cout<<distTo[1]<<endl;
+			cout<<smallestDist<<endl;
 		}
 	}
 	return 0;

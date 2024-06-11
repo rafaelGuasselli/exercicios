@@ -5,7 +5,7 @@ using namespace std;
 
 
 int main() {
-	vector<int> a; a.reserve(10);
-	cout<<a[2]<<endl;
+	string a = "abc";
+	cout<<a.substr(0,2)<<endl;
 	return 0;
 }

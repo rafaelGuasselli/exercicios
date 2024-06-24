@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 #define ll long long
+<<<<<<< HEAD
 using namespace std;
 
 int nVertices, nEdges;
@@ -53,6 +54,24 @@ int main(){
 			cout<<distance<<endl;
 		}
 	}
+=======
+
+using namespace std;
+
+int nVertices, nEdges;
+ll adj[300][300];
+
+int main() {
+	cin>>nVertices>>nEdges;
+
+	for (int i = 0; i < nVertices; i++) {
+		for (int j = 0; j < nVertices; j++) {
+			adj[i][j] = 1000000000000000000;
+		}
+	}
+	
+	
+>>>>>>> cb60717d5c63851e59ee78e6ce7e8d9fc9253e82
 
 	return 0;
 }

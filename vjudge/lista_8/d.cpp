@@ -5,7 +5,7 @@ using namespace std;
 
 vector<pair<double, int>> adj[100];
 int nVertices; 
-int parent[100];
+int p[100];
 int nChildren[100];
 
 double distanceBetweenPoints(pair<double, double> a, pair<double, double> b){
@@ -13,22 +13,22 @@ double distanceBetweenPoints(pair<double, double> a, pair<double, double> b){
 }
 
 int find(int vertice) {
-	if (vertice == parent[vertice]) {
+	if (vertice == p[vertice]) {
 		return vertice;
 	}
 
-	parent[vertice] = find(parent[vertice]);
-	return parent[vertice];
+	p[vertice] = find(p[vertice]);
+	return p[vertice];
 }
 
 void join(int u, int v) {
 	u = find(u);
 	v = find(v);
 	if (nChildren[u] > nChildren[v]) {
-		parent[v] = u;
+		p[v] = u;
 		nChildren[u] += nChildren[v];
 	} else {
-		parent[u] = v;
+		p[u] = v;
 		nChildren[v] += nChildren[u];
 	}
 }
@@ -43,7 +43,7 @@ int main() {
 
 		for (int i = 0; i < nVertices; i++) {
 			adj[i].clear();
-			parent[i] = i;
+			p[i] = i;
 			nChildren[i] = 1;	
 		}
 

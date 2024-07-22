@@ -3,51 +3,36 @@
 using namespace std;
 #define ll unsigned long long
 
-int findPissanoPeriody(ll m){
-    ll previous = 1;
-	ll current = 1;
-	int index = 0;
-	while (1) {
-		ll aux = current;
-		current = (current + previous) % m;
-		previous = aux;
-        if (previous == current && current == 1){
-			return index + 1;
-		}
-		index++;
-	}
+ll values[200000000];
+
+ll mod(ll n, ll m){
+    return (m + (n % m)) % m;
 }
 
-array<ll, 2> fastDoublingFib(ll n, ll m){
-    if (n <= 1){
-		return array<ll, 2>{1, 1};
-	} else{
-        array<ll, 2> aux = fastDoublingFib(floor(n / 2), m);
-		ll a = aux[1];
-		ll b = aux[0];
-        ll c = a * ((b << 1) - a);
-        ll d = a * a + b * b;
-
-        if (n % 2 == 0){
-			return array<ll, 2>{c, d};
-		}else{
-			return array<ll, 2>{d, (c + d)};
+ll findPissanoPeriody(ll m){
+	values[1] = 1;
+	values[2] = 1;
+	for (int i = 3; i < 200000000; i++) {
+		values[i] = mod(values[i-1] + values[i-2], m);
+		if (values[i-1] == 0 && values[i] == 1){
+			return i;
 		}
-	}
-}
+	} 
 
-void ex(int n, int m){
-	int periodo = findPissanoPeriody(m);
-	ll v = n % periodo;
-    ll fib1 = fastDoublingFib(v, m)[0] % periodo;
-    ll fib2 = fastDoublingFib(fib1, m)[0] % periodo;
-    cout<<(fib2)<<endl;
+	return 1;
 }
 	
 int main(){
 	int n, m;
 	while(cin>>n>>m){
-		ex(n, m);
+		int periodo = findPissanoPeriody(m);
+		cout<<periodo<<endl;
+
+		ll index = values[n % periodo] % periodo;
+		ll fib = values[index] % m;
+		cout<<index<<endl;
+		cout<<fib<<endl;
 	}
+
 	return 0;
 }

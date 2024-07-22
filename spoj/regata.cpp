@@ -61,12 +61,9 @@ void addVertice(Point a){
 	for (int v = 0; v < u; v++) {
 		Point b = vertices[v];
 		int intersects = 0;
-		for (pair<Point, Point> obstacle: obstacles) {
-			if (a == obstacle.first || a == obstacle.second) {
-				continue;
-			}
-
-			if (b == obstacle.first || b == obstacle.second) {
+		for (int j  = 0; j < obstacles.size(); j++) {
+			pair<Point, Point> obstacle = obstacles[j];
+			if (j == ceil(v/2)-1 || j == ceil(u/2)-1) {
 				continue;
 			}
 

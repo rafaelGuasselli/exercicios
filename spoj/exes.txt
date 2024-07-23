@@ -1,5 +1,4 @@
 https://br.spoj.com/problems/BOLHAS/
-https://br.spoj.com/problems/TUBOS/
 https://br.spoj.com/problems/MAPABOLH/
 https://br.spoj.com/problems/ENCOTEL/
 https://br.spoj.com/problems/RECUPERA/

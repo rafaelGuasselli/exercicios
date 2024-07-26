@@ -6,7 +6,7 @@ int nNumbers, target;
 int sign[40];
 int values[40];
 int sufixSum[40];
-map<int, int> pathResult[40];
+unordered_map<int, int> pathResult[40];
 
 int path(int value, int index) {
 	if (index == nNumbers) {

@@ -31,7 +31,9 @@ int path(int value, int index) {
 }
 
 int main() {
+	ios_base::sync_with_stdio(0);
 	cin.tie(0);
+	
 	while (cin>>nNumbers>>target) {
 		if (nNumbers == 0 && target == 0) {
 			break;

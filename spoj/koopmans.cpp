@@ -19,16 +19,6 @@ ll lcm(ll a, ll b) {
 	return a * b / mdc(a, b);
 }
 
-int sign(ll number) {
-	if (number < 0) {
-		return -1;
-	} else if (number > 0) {
-		return 1;
-	}
-
-	return 0;
-}
-
 ll sumSequence(ll s, ll e) {
 	return (s+e) * (e-s+1)/2;
 }
@@ -40,11 +30,11 @@ int main() {
 		ll start, end, nNumbers; 
 		scanf("%lld %lld %lld\n", &start, &end, &nNumbers);
 		
-		set<ll> numbers;		
-		multiset<ll> inclusionExclusion;
+		vector<ll> numbers;		
+		vector<ll> inclusionExclusion;
 		for (int i = 0; i < nNumbers; i++) {
 			ll number; scanf("%lld", &number);
-			numbers.insert(number);
+			numbers.push_back(number);
 		}
 
 		for (ll number:numbers) {
@@ -55,17 +45,20 @@ int main() {
 			} 
 
 			if (relativelyPrime) {
-				multiset<ll> add;
+				vector<ll> add;
 				for (ll previousNumber: inclusionExclusion) {
 					if (abs(lcm(previousNumber, number)) > end) {
 						continue;
 					}  
 					
-					add.insert(-lcm(previousNumber, number));
+					add.push_back(-lcm(previousNumber, number));
 				}
 
-				inclusionExclusion.insert(add.begin(), add.end());
-				inclusionExclusion.insert(number);
+				for (ll number: add) {
+					inclusionExclusion.push_back(number);
+				}
+
+				inclusionExclusion.push_back(number);
 			}
 		}
  

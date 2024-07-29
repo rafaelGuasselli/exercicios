@@ -3,8 +3,8 @@
 using namespace std;
 
 int nBancos, nOp;
-int parent[1000005];
-int amount[1000005];
+int parent[100001];
+int amount[100001];
 int find(int u){
 	if (parent[u] == u) {	
 		return u;
@@ -17,6 +17,9 @@ int find(int u){
 void join(int u, int v){
 	u = find(u);
 	v = find(v);
+	if (u == v) {
+		return;
+	}
 
 	if (amount[u] > amount[v]) {
 		parent[v] = u;

@@ -23,16 +23,6 @@ ll lcm(ll a, ll b) {
 	return a * b / mdc(a, b);
 }
 
-int sign(ll number) {
-	if (number < 0) {
-		return -1;
-	} else if (number > 0) {
-		return 1;
-	}
-
-	return 0;
-}
-
 ll sumSequence(ll s, ll e) {
 	return (s+e) * (e-s+1)/2;
 }
@@ -51,29 +41,25 @@ int main() {
 			numbers.push_back(number);
 		}
 
-		for (ll number:numbers) {
-			int relativelyPrime = 1;
-			
+		for (ll number:numbers) {			
 			if (multiplesInsideInterval(number, start, end) == 0) {
 				continue;
-			} 
+			}
+			
+			vector<ll> add;
+			for (ll previousNumber: inclusionExclusion) {
+				if (multiplesInsideInterval(abs(lcm(previousNumber, number)), start, end) == 0) {
+					continue;
+				} 
 
-			if (relativelyPrime) {
-				vector<ll> add;
-				for (ll previousNumber: inclusionExclusion) {
-					if (multiplesInsideInterval(abs(lcm(previousNumber, number)), start, end) == 0) {
-						continue;
-					} 
+				add.push_back(-lcm(previousNumber, number));
+			}
 
-					add.push_back(-lcm(previousNumber, number));
-				}
-
-				for (ll number: add) {
-					inclusionExclusion.push_back(number);
-				}
-
+			for (ll number: add) {
 				inclusionExclusion.push_back(number);
 			}
+
+			inclusionExclusion.push_back(number);
 		}
  
 		ll totalSum = 0;

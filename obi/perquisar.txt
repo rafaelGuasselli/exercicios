@@ -1,0 +1,60 @@
+Math
+	pigeonhole principle
+	pascal triangle
+	inclusion exclusion principle
+	Fast exponentiation
+	minimax algorithm
+	Game theory
+
+String
+	KMP
+	Rabin-Karp
+	Trie 
+
+Graphs
+	handshake lemma
+	Kosaraju
+	Eulerian path
+
+DSA
+	Sparse Table
+	sqrt decomposition
+	BIT
+	Segment tree
+	Merge sort tree
+	Counting sort
+
+Sortings and search
+	Two pointers
+	Binary search
+	Meet-in-the-Middle
+	Ternary search
+
+Dynamic programminig
+	Combinatoric dynamic programming(How to calculate pascal triangle)
+	Edit distance
+	Matrix chain multiplication
+	https://www.geeksforgeeks.org/dynamic-programming-dp-and-directed-acyclic-graphs-dag/
+	Longest path problem
+	bitmask - (caminho Hamiltoniano)
+
+Algoritmos em Árvores
+	How to find common ancestor on a tree
+	[P1] Aumentação de subárvores em árvores enraizadas (por exemplo, calcular o tamanho ou a folha mais distante para cada subárvore)
+	[P1] Diâmetro e centro de árvore em O(N)
+	[P2] Grafos funcionais (decomposição em ciclos e árvores)
+	[P2] Binary Lifting e Ancestral Comum Mais Profundo (LCA) em O(log N)
+	[P2] Centroide de árvore em O(N)
+	[P2] Pré-ordem, em-ordem, pós-ordem e técnica de Linearização de Árvore (Euler Tour Technique)
+	[P2] Programação dinâmica em árvores enraizadas com técnica de Girar Raiz (Tree Rerooting)
+
+Algoritmos de Geometria
+	[P2] Compressão de coordenadas
+	[P2] Produto escalar e vetorial, incluindo aplicações:
+		Checar se três pontos são colineares
+		Testar se dois vetores são paralelos/ortogonais
+		Calcular sentido do ângulo entre dois vetores
+	[P2] Interseção de duas retas
+	[P2] Técnicas de Varredura (Line Sweep, Radial Sweep)
+	[P2] Área de polígono em O(N) (Fórmula do Cadarço ou equivalente)
+	[P2] Checar se um ponto está em um polígono em O(N) (Ray Casting ou equivalente)

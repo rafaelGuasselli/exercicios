@@ -6,7 +6,7 @@ vector<vector<int>> adj;
 vector<vector<int>> radj;
 map<string, int> code;
 vector<string> names;
-vector<int> visited;
+vector<int> degree;
 
 int main() {
 	while (1) {
@@ -19,7 +19,7 @@ int main() {
 		radj.clear();
 		code.clear();
 		names.clear();
-		visited.clear();
+		degree.clear();
 
 		for (int i = 0; i < nEdges; i++) {
 			string disciplina; cin>>disciplina;
@@ -30,7 +30,7 @@ int main() {
 				adj.push_back({}); 
 				radj.push_back({}); 
 				names.push_back(disciplina);
-				visited.push_back(0);
+				degree.push_back(0);
 			}
 
 			for (int j = 0; j < nConnections; j++) {
@@ -41,20 +41,22 @@ int main() {
 					adj.push_back({}); 
 					radj.push_back({}); 
 					names.push_back(dependency);
-					visited.push_back(0);
+					degree.push_back(0);
 				}
 
-				adj[code[disciplina]].push_back(code[dependency]);
-				radj[code[dependency]].push_back(code[disciplina]);
+				int u = code[disciplina];
+				int v = code[dependency];
+
+				degree[u]++;
+				adj[u].push_back(v);
+				radj[v].push_back(u);
 			}
 		}
 
-
-
-		vector<vector<string>> semestres = {{}};
+		vector<vector<int>> semestres = {{}};
 		priority_queue<int, vector<int>, greater<int>> q;
 		for (int i = 0; i < adj.size(); i++) {
-			if (adj[i].size() == 0) {
+			if (degree[i] == 0) {
 				q.push(i);
 			}
 		}
@@ -64,28 +66,18 @@ int main() {
 		while (!q.empty()) {
 			int u = q.top(); q.pop();
 
-			semestres[semestre].push_back(names[u]);
+			semestres[semestre].push_back(u);
 			count++;
 
 			if (count == nDiciplinas || q.empty()) {
 				semestres.push_back({});
 				semestre++;
 				count = 0;
-
-				sort(semestres[semestre-1].begin(), semestres[semestre-1].end());
-				for (string us: semestres[semestre-1]) {
-					int u = code[us];
-					visited[u] = 1;
+				
+				for (int u: semestres[semestre-1]) {
 					for (int v: radj[u]) {
-						if (visited[v]) continue;
-						int valid = 1;
-						for (int d: adj[v]) {
-							if (!visited[d]) {
-								valid = 0;
-							}
-						}
-
-						if (valid) {
+						degree[v]--;
+						if (degree[v] == 0) {
 							q.push(v);
 						}
 					}
@@ -93,16 +85,19 @@ int main() {
 			}
 		}
 
-
 		cout<<"Formatura em "<<semestres.size()-1<<" semestres"<<endl;
 		for (int i = 0; i < semestres.size()-1; i++) {
 			cout<<"Semestre "<<i+1<<" : ";
+			sort(semestres[i].begin(), semestres[i].end(), [](int a, int b){
+				return names[a] < names[b];
+			});
+
 			for (int j = 0; j < semestres[i].size(); j++) {
 				if (j > 0) {
 					cout<<" ";
 				}
 
-				cout<<semestres[i][j];
+				cout<<names[semestres[i][j]];
 			}
 			cout<<endl;
 		}

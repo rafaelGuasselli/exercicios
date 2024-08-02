@@ -1,16 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int matrij[10][10];
-vector<set<int>> valores = {
-	{0, 0}, {0, 1}, {0, 2}, {0, 3},
-	{0, 4}, {0, 5}, {0, 6}, {1, 1},
-	{1, 2}, {1, 3}, {1, 4}, {1, 5},
-	{1, 6}, {2, 2}, {2, 3}, {2, 4},
-	{2, 5}, {2, 6}, {3, 3}, {3, 4},
-	{3, 5}, {3, 6}, {4, 4}, {4, 5}, 	
-	{4, 6}, {5, 5}, {5, 6}, {6, 6},
-};
+int matrix[7][8];
+int mIds[7][8];
+int nTests;
 
 map<set<int>, int> ids = {
 	{{0, 0}, 1},  {{0, 1}, 2},   {{0, 2}, 3},  {{0, 3}, 4},
@@ -19,75 +12,80 @@ map<set<int>, int> ids = {
 	{{1, 6}, 13}, {{2, 2}, 14},  {{2, 3}, 15}, {{2, 4}, 16},
 	{{2, 5}, 17}, {{2, 6}, 18},  {{3, 3}, 19}, {{3, 4}, 20},
 	{{3, 5}, 21}, {{3, 6}, 22},  {{4, 4}, 23}, {{4, 5}, 24},
-	{{4, 6}, 25}, {{5, 5}, 26},  {{5, 6}, 27}, {{6, 6}, 28}
-};
+	{{4, 6}, 25}, {{5, 5}, 26},  {{5, 6}, 27}, {{6, 6}, 28} 
+}; 
 
-bitset<30> used;
-bitset<10> marked[10];
+pair<int, int> nextPos(pair<int, int> pos) {
+	int i = pos.first;
+	int j = pos.second;
+	if (j <= 6) {
+		return {i, j+1};
+	} else {
+		return {i+1, 0};
+	}
+}
 
-int dfs(int y, int x) {
-	if (used.count() == 28) {
-		return 1;
+int fill(pair<int, int> pos, char direction, bitset<29> used, vector<bitset<8>> marked) {
+	int i = pos.first; int j = pos.second;
+	if (i < 0 || j < 0 || i >= 7 || j >= 8) {
+		return 0;
+	}
+	
+	int ni, nj;
+	if (direction == 'h') {
+		ni = 0; nj = 1;
+	} else {
+		ni = 1; nj = 0;
 	}
 
 	int total = 0;
-	for (int i = 0; i < 7; i++) {
-		int found = 0;
-		for (int j = 0; j < 8; j++) {
-			set<int> horizontal = {matrij[i][j], matrij[i][j+1]};	
-			set<int> vertical = {matrij[i+1][j], matrij[i][j]};
-			int w = ids[horizontal];
-			int f = ids[vertical];
+	int notOutOfBounds = (i+ni) < 7 && (j+nj) < 8;
+	if (marked[i].test(j)){
+		total += fill(nextPos(pos), direction, used, marked);
+	} else if (notOutOfBounds) {
+		int empty = !marked[i].test(j) && !marked[i+ni].test(j+nj);
+		if (empty) {
+			set<int> piece = {matrix[i][j], matrix[i+ni][j+nj]};
+			int id = ids[piece]; 
 
-			if (!used.test(w) && !marked[i].test(j) && !marked[i].test(j+1)) {
-				used.set(w);
-				marked[i].set(i);
-				marked[i].set(j+1);
-
-				total += dfs(i, j);
-
-				used.reset(w);
-				marked[i].reset(j);
-				marked[i].reset(j+1);
-			}
-					
-			if (!used.test(f) && !marked[i+1].test(j) && !marked[i].test(j)) {
-				used.set(f);
+			if (id > 0 && !used.test(id)) {
 				marked[i].set(j);
-				marked[i+1].set(j);
-				
-				total += dfs(i, j);
+				marked[i+ni].set(j+nj);
 
-				used.reset(f);
-				marked[i].reset(j);
-				marked[i+1].reset(j);
+				mIds[i][j] = id;
+				mIds[i+ni][j+nj] = id;
+				
+				used.set(id);
+				if (used.count() == 28) {
+					return 1;
+				}
+
+
+				total += fill(nextPos(pos), 'h', used, marked);
+				total += fill(nextPos(pos), 'v', used, marked);
 			}
-		}
+		} 
 	}
-	
+
 	return total;
 }
 
 int main() {
-	int nTests; scanf("%d", &nTests);
+	scanf("%d", &nTests);
 	for (int t = 0; t < nTests; t++) {
-		used.reset();
-		for (int i = 0; i < 10; i++) {
-			marked[i].reset();
-			for (int j  = 0; j < 10; j++) {
-				matrij[i][j] = -1;
-			}
-		}
-
 		for (int i = 0; i < 7; i++) {
-			for (int j  = 0; j < 8; j++) {
-				scanf("%d", &matrij[i][j]);
+			for (int j = 0; j < 8; j++) {
+				scanf("%d", &matrix[i][j]);
 			}
 		}
 
-		int total = dfs(0, 0);
+		int total = 0;
+		total += fill({0, 0}, 'h', {}, {{}, {}, {}, {}, {}, {}, {}});
+		total += fill({0, 0}, 'v', {}, {{}, {}, {}, {}, {}, {}, {}});
+
+		printf("Teste %d\n", t+1);
 		printf("%d\n", total);
 	}
-
+	
 	return 0;
 }

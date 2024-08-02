@@ -2,7 +2,6 @@
 using namespace std;
 
 int matrix[7][8];
-int mIds[7][8];
 int nTests;
 
 map<set<int>, int> ids = {
@@ -52,9 +51,6 @@ int fill(pair<int, int> pos, char direction, bitset<29> used, vector<bitset<8>> 
 				marked[i].set(j);
 				marked[i+ni].set(j+nj);
 
-				mIds[i][j] = id;
-				mIds[i+ni][j+nj] = id;
-				
 				used.set(id);
 				if (used.count() == 28) {
 					return 1;

@@ -41,16 +41,13 @@ int main(){
 				int y2 = points[j].y;
 
 				if (x1 == x2) {
-					lines.push_back({90, {x1, i}});
 					lines.push_back({90, {x1, j}});
 				} else if(y1 == y2){
-					lines.push_back({0, {y1, i}});
 					lines.push_back({0, {y1, j}});
 				} else {
 					double a = derivada(x1, x2, y1, y2);
 					double b = acharB(a, y1, x1);
 					double angle = atan(a)*180/PI;
-					lines.push_back({angle, {b, i}});
 					lines.push_back({angle, {b, j}});
 				}
 			}
@@ -77,7 +74,7 @@ int main(){
 			previousAngle = angle;
 			points.insert(point);
 		
-			maximum = MAX(maximum, points.size());
+			maximum = MAX(maximum, points.size()+1);
 		}
 
 		cout<<maximum<<endl;

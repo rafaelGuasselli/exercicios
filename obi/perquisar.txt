@@ -1,18 +1,13 @@
 Math
-	pigeonhole principle
-	pascal triangle
-	inclusion exclusion principle
 	Fast exponentiation
 	minimax algorithm
 	Game theory
 
 String
-	KMP
 	Rabin-Karp
-	Trie 
+	Trie
 
 Graphs
-	handshake lemma
 	Kosaraju
 	Eulerian path
 
@@ -25,8 +20,6 @@ DSA
 	Counting sort
 
 Sortings and search
-	Two pointers
-	Binary search
 	Meet-in-the-Middle
 	Ternary search
 
@@ -50,11 +43,5 @@ Algoritmos em Árvores
 
 Algoritmos de Geometria
 	[P2] Compressão de coordenadas
-	[P2] Produto escalar e vetorial, incluindo aplicações:
-		Checar se três pontos são colineares
-		Testar se dois vetores são paralelos/ortogonais
-		Calcular sentido do ângulo entre dois vetores
-	[P2] Interseção de duas retas
 	[P2] Técnicas de Varredura (Line Sweep, Radial Sweep)
-	[P2] Área de polígono em O(N) (Fórmula do Cadarço ou equivalente)
 	[P2] Checar se um ponto está em um polígono em O(N) (Ray Casting ou equivalente)

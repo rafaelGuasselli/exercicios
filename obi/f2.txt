@@ -8,9 +8,7 @@ Medio:
 https://olimpiada.ic.unicamp.br/pratique/ps/2020/f2/estrada/
 https://olimpiada.ic.unicamp.br/pratique/ps/2020/f2/fotografia/
 https://olimpiada.ic.unicamp.br/pratique/ps/2018/f2/fuga/
-https://olimpiada.ic.unicamp.br/pratique/ps/2017/f2/mapa/
 https://olimpiada.ic.unicamp.br/pratique/ps/2017/f2/frete/
-https://olimpiada.ic.unicamp.br/pratique/ps/2017/f2/xerxes/
 
 Dificil:
 https://olimpiada.ic.unicamp.br/pratique/ps/2021/f2/sanduiche/

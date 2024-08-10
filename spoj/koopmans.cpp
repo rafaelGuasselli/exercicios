@@ -3,6 +3,10 @@
 
 using namespace std;
 
+ll multiplesInsideInterval(ll n, ll start, ll end) {
+	return end/n - (start-1)/n;
+}
+
 ll mod(ll n, ll m) {
 	return ((n%m)+m)%m;
 }
@@ -37,29 +41,25 @@ int main() {
 			numbers.push_back(number);
 		}
 
-		for (ll number:numbers) {
-			int relativelyPrime = 1;
-			
-			if (number > end) {
+		for (ll number:numbers) {			
+			if (multiplesInsideInterval(number, start, end) == 0) {
 				continue;
-			} 
+			}
+			
+			vector<ll> add;
+			for (ll previousNumber: inclusionExclusion) {
+				if (multiplesInsideInterval(abs(lcm(previousNumber, number)), start, end) == 0) {
+					continue;
+				} 
 
-			if (relativelyPrime) {
-				vector<ll> add;
-				for (ll previousNumber: inclusionExclusion) {
-					if (abs(lcm(previousNumber, number)) > end) {
-						continue;
-					}  
-					
-					add.push_back(-lcm(previousNumber, number));
-				}
+				add.push_back(-lcm(previousNumber, number));
+			}
 
-				for (ll number: add) {
-					inclusionExclusion.push_back(number);
-				}
-
+			for (ll number: add) {
 				inclusionExclusion.push_back(number);
 			}
+
+			inclusionExclusion.push_back(number);
 		}
  
 		ll totalSum = 0;

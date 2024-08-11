@@ -1,28 +1,26 @@
+Sortings and search
+	Meet-in-the-Middle
+	Ternary search
+
 Math
 	Fast exponentiation
 	minimax algorithm
 	Game theory
 
 String
-	Rabin-Karp
+	1) Rabin-Karp
 	Trie 
 
 Graphs
-	handshake lemma
-	Kosaraju
+	1) Kosaraju
 	Eulerian path
 
 DSA
+	1) BIT
 	Sparse Table
-	sqrt decomposition
-	BIT
 	Segment tree
-	Merge sort tree
-	Counting sort
-
-Sortings and search
-	Meet-in-the-Middle
-	Ternary search
+	Merge sort Tree
+	sqrt decomposition
 
 Dynamic programminig
 	Combinatoric dynamic programming(How to calculate pascal triangle)
@@ -44,6 +42,7 @@ Algoritmos em Árvores
 
 Algoritmos de Geometria
 	[P2] Compressão de coordenadas
-	[P2] Técnicas de Varredura (Line Sweep, Radial Sweep)
+	1) Line Sweep
+	Radial Sweep
 	[P2] Área de polígono em O(N) (Fórmula do Cadarço ou equivalente)
 	[P2] Checar se um ponto está em um polígono em O(N) (Ray Casting ou equivalente)

@@ -1,47 +1,44 @@
 Math
-	Fast exponentiation
+	1) Fast exponentiation
 	minimax algorithm
 	Game theory
 
 String
-	Rabin-Karp
-	Trie
+	1) Rabin-Karp
+	Trie 
 
 Graphs
-	Kosaraju
+	1) Kosaraju
 	Eulerian path
 
 DSA
 	Sparse Table
-	sqrt decomposition
-	BIT
-	Segment tree
+	1) sqrt decomposition
+	1) BIT
+	1) Segment tree
 	Merge sort tree
-	Counting sort
 
 Sortings and search
-	Meet-in-the-Middle
-	Ternary search
+	1) Meet-in-the-Middle
+	1) Ternary search
 
 Dynamic programminig
-	Combinatoric dynamic programming(How to calculate pascal triangle)
-	Edit distance
 	Matrix chain multiplication
-	https://www.geeksforgeeks.org/dynamic-programming-dp-and-directed-acyclic-graphs-dag/
-	Longest path problem
 	bitmask - (caminho Hamiltoniano)
-
+	Edit distance
+	Longest path problem
+	
 Algoritmos em Árvores
 	How to find common ancestor on a tree
-	[P1] Aumentação de subárvores em árvores enraizadas (por exemplo, calcular o tamanho ou a folha mais distante para cada subárvore)
-	[P1] Diâmetro e centro de árvore em O(N)
-	[P2] Grafos funcionais (decomposição em ciclos e árvores)
-	[P2] Binary Lifting e Ancestral Comum Mais Profundo (LCA) em O(log N)
-	[P2] Centroide de árvore em O(N)
-	[P2] Pré-ordem, em-ordem, pós-ordem e técnica de Linearização de Árvore (Euler Tour Technique)
-	[P2] Programação dinâmica em árvores enraizadas com técnica de Girar Raiz (Tree Rerooting)
+	Aumentação de subárvores em árvores enraizadas (por exemplo, calcular o tamanho ou a folha mais distante para cada subárvore)
+	Diâmetro e centro de árvore em O(N)
+	Grafos funcionais (decomposição em ciclos e árvores)
+	Binary Lifting e Ancestral Comum Mais Profundo (LCA) em O(log N)
+	Centroide de árvore em O(N)
+	Pré-ordem, em-ordem, pós-ordem e técnica de Linearização de Árvore (Euler Tour Technique)
+	Programação dinâmica em árvores enraizadas com técnica de Girar Raiz (Tree Rerooting)
 
 Algoritmos de Geometria
-	[P2] Compressão de coordenadas
-	[P2] Técnicas de Varredura (Line Sweep, Radial Sweep)
-	[P2] Checar se um ponto está em um polígono em O(N) (Ray Casting ou equivalente)
+	Compressão de coordenadas
+	Técnicas de Varredura (Line Sweep, Radial Sweep) 
+	Checar se um ponto está em um polígono em O(N) (Ray Casting ou equivalente)

@@ -13,10 +13,10 @@ Graphs
 
 DSA
 	Sparse Table
-	1) sqrt decomposition
 	1) BIT
 	1) Segment tree
 	Merge sort tree
+	3) sqrt decomposition
 
 Sortings and search
 	1) Meet-in-the-Middle

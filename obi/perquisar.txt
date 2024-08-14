@@ -1,21 +1,16 @@
-Math
-	1) Fast exponentiation
-	minimax algorithm
-	Game theory
-
 String
 	1) Rabin-Karp
-	Trie 
+	2) Trie 
 
 Graphs
 	1) Kosaraju
-	Eulerian path
-
+	1) Tarjan
+	1) Eulerian path/cyle
 DSA
-	Sparse Table
+	0) Sparse Table
 	1) BIT
 	1) Segment tree
-	Merge sort tree
+	1) Merge sort tree
 	3) sqrt decomposition
 
 Sortings and search
@@ -23,6 +18,7 @@ Sortings and search
 	1) Ternary search
 
 Dynamic programminig
+	Longest commom subsequence
 	Matrix chain multiplication
 	bitmask - (caminho Hamiltoniano)
 	Edit distance
@@ -39,6 +35,11 @@ Algoritmos em Árvores
 	Programação dinâmica em árvores enraizadas com técnica de Girar Raiz (Tree Rerooting)
 
 Algoritmos de Geometria
-	Compressão de coordenadas
-	Técnicas de Varredura (Line Sweep, Radial Sweep) 
+	1) Compressão de coordenadas
+	1) Técnicas de Varredura (Line Sweep, Radial Sweep) - https://olimpiada.ic.unicamp.br/static/extras/aulas/seletivaIOI2021_radial_sweep.pdf
 	Checar se um ponto está em um polígono em O(N) (Ray Casting ou equivalente)
+
+Math
+	1) Fast exponentiation
+	minimax algorithm
+	Game theory

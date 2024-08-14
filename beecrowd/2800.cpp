@@ -51,7 +51,7 @@ int main(){
 	ios_base::sync_with_stdio(0);
 
 	cin>>nValues>>nQueries;
-	sqrtWidth = floor(sqrt(nValues));
+	sqrtWidth = ceil(sqrt(nValues));
 
 	for (int i = 0; i < nValues; i++) {
 		int value; cin>>value;

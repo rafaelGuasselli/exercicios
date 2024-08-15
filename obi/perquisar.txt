@@ -25,14 +25,12 @@ Dynamic programminig
 	Longest path problem
 	
 Algoritmos em Árvores
-	How to find common ancestor on a tree
-	Aumentação de subárvores em árvores enraizadas (por exemplo, calcular o tamanho ou a folha mais distante para cada subárvore)
-	Diâmetro e centro de árvore em O(N)
-	Grafos funcionais (decomposição em ciclos e árvores)
-	Binary Lifting e Ancestral Comum Mais Profundo (LCA) em O(log N)
 	Centroide de árvore em O(N)
-	Pré-ordem, em-ordem, pós-ordem e técnica de Linearização de Árvore (Euler Tour Technique)
+	Diâmetro e centro de árvore em O(N)
+	Técnica de Linearização de Árvore (Euler Tour Technique)
+	Binary Lifting e Ancestral Comum Mais Profundo (LCA) em O(log N)
 	Programação dinâmica em árvores enraizadas com técnica de Girar Raiz (Tree Rerooting)
+	Aumentação de subárvores em árvores enraizadas (por exemplo, calcular o tamanho ou a folha mais distante para cada subárvore)
 
 Algoritmos de Geometria
 	1) Compressão de coordenadas

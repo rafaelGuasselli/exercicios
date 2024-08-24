@@ -18,7 +18,7 @@ Sortings and search
 	1) Ternary search
 
 Dynamic programminig
-	Longest commom subsequence
+	2) Longest commom subsequence
 	Matrix chain multiplication
 	bitmask - (caminho Hamiltoniano)
 	Edit distance

@@ -1,3 +1,8 @@
 https://br.spoj.com/problems/PSQF/
 https://br.spoj.com/problems/FUTEBOL/
 https://br.spoj.com/problems/VOLEIBOL/
+
+
+5 5 5 3 3 2 2
+
+2 5 3 3 5 2 5

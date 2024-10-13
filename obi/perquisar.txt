@@ -1,9 +1,9 @@
 Sortings and search
-	Meet-in-the-Middle
-	Ternary search
+	1) Meet-in-the-Middle
+	1) Ternary search
 
 Math
-	Fast exponentiation
+	1) Fast exponentiation
 	minimax algorithm
 	Game theory
 

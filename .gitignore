@@ -4,3 +4,4 @@ out.txt
 *.exe
 .vscode
 test.cpp
+run

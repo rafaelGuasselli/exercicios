@@ -33,7 +33,7 @@ signed main() {
 	
 	for (int xp = 1; xp <= m; xp++) {
 		int acumulated = 0;
-		for (int i = xp; i >= 0; i--) {
+		for (int i = 0; i <= xp; i++) {
 			acumulated += strengthRange[xp][i];
 		}
 

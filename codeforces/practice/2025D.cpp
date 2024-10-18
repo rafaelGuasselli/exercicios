@@ -40,11 +40,8 @@ signed main() {
 		for (int smart = 0; smart <= xp; smart++) {
 			int strength = xp - smart;
 			acumulated += smartRange[xp][smart];
-			if(smart > 0) {
-				acumulated -= strengthRange[xp][strength+1];
-			}
-
 			dp[xp][smart] = max(dp[xp-1][smart-1], dp[xp-1][smart]) + acumulated; 
+			acumulated -= strengthRange[xp][strength];	
 		}
 	}
 

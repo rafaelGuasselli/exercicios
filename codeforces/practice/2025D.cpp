@@ -8,6 +8,9 @@ int smartRange[5001][5001];
 int strengthRange[5001][5001];
 	
 signed main() {
+	cin.tie(0);
+	ios_base::sync_with_stdio(0);
+
 	int n, m; cin>>n>>m;
 	for (int i = 0; i < n; i++) {
 		cin>>valores[i];
@@ -37,8 +40,8 @@ signed main() {
 		for (int smart = 0; smart <= xp; smart++) {
 			int strength = xp - smart;
 			acumulated += smartRange[xp][smart];
-			if(strength-1 > 0) {
-				acumulated -= strengthRange[xp][strength-1];
+			if(smart > 0) {
+				acumulated -= strengthRange[xp][strength+1];
 			}
 
 			dp[xp][smart] = max(dp[xp-1][smart-1], dp[xp-1][smart]) + acumulated; 

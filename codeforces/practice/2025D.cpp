@@ -13,17 +13,17 @@ signed main() {
 		cin>>valores[i];
 	}
 
-	int zeroIndex = 0;
+	int xpIndex = 0;
 	for (int i = 0; i < n; i++) {
 		if (valores[i] == 0) {
-			zeroIndex++;
+			xpIndex++;
 			continue;
 		}
 
 		if (valores[i] > 0) {
-			smartRange[zeroIndex][valores[i]]++;
+			smartRange[xpIndex][valores[i]]++;
 		} else {
-			strengthRange[zeroIndex][-valores[i]]++;
+			strengthRange[xpIndex][-valores[i]]++;
 		}
 	}
 

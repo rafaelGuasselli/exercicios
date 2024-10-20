@@ -3,9 +3,7 @@
 
 using namespace std;
 
-
 int amount[2];
-
 int main() {
 	int nTests; cin>>nTests;
 

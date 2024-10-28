@@ -1,70 +1,61 @@
 #include <bits/stdc++.h>
+#define int long long
 using namespace std;
-#define num int
 
-vector<pair<num, num>> intervalos;
+vector<pair<int, int>> intervalos;
 
-int main() {	
+signed main() {	
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
 	while (true) {
-		num tamanhoRua, qtdPostos; cin>>tamanhoRua>>qtdPostos;
-		num remover = 0;
+		int tamanhoRua, qtdPostos; cin>>tamanhoRua>>qtdPostos;
+		int remover = 0;
 
 		if (tamanhoRua == 0 && qtdPostos == 0) {
 			break;
 		}
 
-		for (num i = 0; i < qtdPostos; i++) {
-			num pos, raio; cin>>pos>>raio;
-			num esquerda = max(0, pos - raio);
-			num direita = min(tamanhoRua, pos + raio);
-			intervalos.push_back(make_pair(esquerda, direita));
+		intervalos.clear();
+		intervalos.push_back({0, 0});
+		for (int i = 0; i < qtdPostos; i++) {
+			int pos, raio; cin>>pos>>raio;
+			int esquerda = pos - raio;
+			int direita = pos + raio;
+			intervalos.push_back({esquerda, direita});
 		}
+		intervalos.push_back({tamanhoRua, tamanhoRua});
 
 		sort(intervalos.begin(), intervalos.end());
+		int qtdRemover = 0;
+		pair<int, int>* anterior = &intervalos[0];
+		pair<int, int>* atual = &intervalos[1];
+		pair<int, int>* proximo = &intervalos[2];
 
-		bool impossivel = false;
-		int ultimoPos = 0;
-		for (num i = 0; i < qtdPostos; i++) {
-			auto intervalo = intervalos[i];
-
-			cout<<ultimoPos<<" "<<intervalo.first<<endl;
-			if (intervalo.first > ultimoPos) {
-				impossivel = true;
+		for (int i = 3; i < qtdPostos+2; i++) {
+			if (anterior->second < atual->first) {
+				qtdRemover = -1;
 				break;
 			}
-			
-			ultimoPos = intervalo.second;
-		}
 
-		if (ultimoPos < tamanhoRua) {
-			impossivel = true;
-		}
-		
-		for (num i = 0; i < qtdPostos && !impossivel; i++) {
-			num esquerda = intervalos[i].first;
-			num direita = intervalos[i].second;
-
-			for (num j = i+1; j < intervalos.size(); j++) {
-				auto intervalo = intervalos[i];
-				if (esquerda >= intervalo.first && direita <= intervalo.second) {
-					remover++;
-				}
+			if (anterior->second >= proximo->first) {
+				qtdRemover++;
+				atual = atual->second > proximo->second ? atual : proximo;
+				proximo = &intervalos[i];
+			} else if (atual->second < proximo->first) {
+				qtdRemover = -1;
+				break;
+			} else {
+				anterior = atual;
+				atual = proximo;
+				proximo = &intervalos[i];
 			}
-
 		}
 
-
-
-		if (impossivel) {
-			cout<<"-1"<<endl;
-		} else {
-			cout<<ultimoPos<<endl;
-		}
-
+		cout<<qtdRemover<<endl;
 	}
+
+
 
 	return 0;
 }

@@ -25,9 +25,11 @@ signed main() {
 	}
 
 	target /= 2;
+	
 	for (int i = 0; i < n && dp[target].count() == 0; i++) {
 		for (int k = target; k >= 1; k--) {
 			if (dp[k].count() > 0) {
+				cout<<i<<endl;
 				bitset<105> copy(dp[k]);
 				dp[k+valores[i]] = copy;
 				dp[k+valores[i]].set(i);
@@ -37,7 +39,6 @@ signed main() {
 				}	
 			}
 		}
-
 		dp[valores[i]].set(i);
 	}
 

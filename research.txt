@@ -1,3 +1,0 @@
-nth dimentional range queries.
-nth dimentional segment tree.
-nth dimentional BIT.

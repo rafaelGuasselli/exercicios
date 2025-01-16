@@ -26,21 +26,18 @@ int read(int left, int right, int value){
 	int nNumbers = 0;
 	int range = abs(right-left)+1;
 
-	while (left % (int)sqrtWidth != 0 && left <= right) {
-		if (values[left] == value) nNumbers++;
-		left++;
+	for (int i = left; i <= min((left/sqrtWidth + 1) * sqrtWidth, right); i++) {
+		if (values[i] == value) nNumbers++;
 	}
 
-	while ((right+1) % (int)sqrtWidth != 0 && right >= left) {
-		if (values[right] == value) nNumbers++;
-		right--;
+	for (int i = right; i >= max((left/sqrtWidth-1) * sqrtWidth, left); i--) {
+		if (values[i] == value) nNumbers++;
 	}
 
-	
-	left = left/sqrtWidth;
-	right = (right+1)/sqrtWidth;
-	while (left < right) {
-		nNumbers += valuesSQRT[left++][value];
+	left = left/sqrtWidth+1;
+	right = right/sqrtWidth-1;
+	for (int i = left; i <= right; i++) {
+		nNumbers += valuesSQRT[i][value]; 
 	}
 
 	return abs(range-nNumbers);

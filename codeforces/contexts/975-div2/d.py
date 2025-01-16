@@ -22,7 +22,7 @@ while t:
 			if abs(l - orderedLista[i][1])+(r-l)+1 > orderedLista[i][0] and abs(r - orderedLista[i][1])+(r-l)+1 > orderedLista[i][0]:
 				left = 1e9
 				break
-
+ 
 		l = min(l, orderedLista[i][1])
 		r = max(r, orderedLista[i][1])
 	
@@ -31,7 +31,7 @@ while t:
 		a = lista[i]
 		left = max(left, i-a+1)
 		right = min(right, a+i-1)
-
+ 
 	if (right >= left):    
 		print(right-left+1)
 	else:

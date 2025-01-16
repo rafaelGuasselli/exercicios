@@ -3,46 +3,59 @@ using namespace std;
 
 int nMovies, nActors;
 
-pair<int, int> parent[105];
-vector<pair<int, int>> adj[105];
-vector<int> actorFromMovie[105];
-vector<int> moviesFromActor[1000005];
+vector<int> adjMOV[105];
+vector<int> adjACT[1000005];
+int visitedMOV[105];
+int visitedACT[1000005];
 
-bitset<1000005> actorInMovie[105];
-bitset<105> visited;
+map<pair<int, int>, pair<int, string>> memo;
+string sufix; 
 
+int target;
+int nextValue[1001005];
 
-pair<int, int> bfs(int actorU, int actorV) {
-	queue<int> q;
-	visited.reset();
-
-	for (int i = 0; i < nMovies; i++) {
-		parent[i] = {i, -1};
+int dfsMov(int m);
+int dfsAct(int u) {
+	int total = 101;
+	if (target == u) {
+		nextValue[u+101] = -1;
+		return 1;
 	}
 
-	for (int i: moviesFromActor[actorU]) {
-		parent[i] = {i, actorU};
-		visited.set(i);
-		q.push(i);
+	if (memo.find({u, target}) != memo.end()) {
+		nextValue[u+101] = -1;
+		sufix = memo[{u, target}].second;
+		return memo[{u, target}].first;
 	}
 
-	while (!q.empty()) {
-		int u = q.front(); q.pop();
-
-		if (actorInMovie[u].test(actorV)) {
-			return {u, actorV};
-		}
-
-		for (pair<int, int> edge: adj[u]) {
-			if (!visited.test(edge.first)) {
-				visited.set(edge.first);
-				parent[edge.first] = {u, edge.second};
-				q.push(edge.first);
+	visitedACT[u] = 1;
+	for (int m:adjACT[u]) {
+		if (!visitedMOV[m]) {
+			int res = dfsMov(m);
+			if (res < total) {
+				total = res;
+				nextValue[u+101] = m;
 			}
 		}
 	}
 
-	return {-1, -1};
+	return total;
+}
+
+int dfsMov(int m) {
+	int total = 101;
+	visitedMOV[m] = 1;
+	for (int a:adjMOV[m]) {
+		if (visitedACT[a]) continue;
+
+		int res = dfsAct(a);
+		if (res < total) {
+			total = res;
+			nextValue[m] = a+101;
+		}
+	}
+
+	return total+1;
 }
 
 signed main() {
@@ -50,65 +63,57 @@ signed main() {
 	cout.tie(0);
 	ios_base::sync_with_stdio(0);
 
+
+	memo.clear();
 	cin>>nMovies>>nActors;
 	for (int i = 0; i < nMovies; i++) {
 		int n; cin>>n;
 		for (int j = 0; j < n; j++) {
 			int actor; cin>>actor; actor--;
-			actorInMovie[i].set(actor);
-			moviesFromActor[actor].push_back(i);
-			actorFromMovie[i].push_back(actor);
+			adjMOV[i].push_back(actor);
+			adjACT[actor].push_back(i);
 		}
 	}
 
-	for (int i = 0; i < nMovies; i++) {
-		int save[105]; 
-		memset(save, 0, sizeof(int) * 105);
-		
-		for (int j: actorFromMovie[i]) {
-			for (int v: moviesFromActor[j]) {
-				adj[i].push_back({v, j});
-				save[v] = j+1;
-			} 
-		}
+	int queries; cin>>queries;
+	for (int i = 0; i < queries; i++) {
+		int u, v; cin>>u>>v;
+		u--; v--;
 
-		for (int v = 0; v < 105; v++) {
-			if (save[v] != 0) {
-				adj[i].push_back({v, save[v]-1});
-			}
-		}
-	}
-
-	int nQueries; cin>>nQueries;
-	for (int i = 0; i < nQueries; i++) {
-		int u, v; cin>>u>>v; u--; v--;
-		pair<int, int> dest = bfs(u, v);
-		if (dest.first == -1) {
-			cout<<-1<<endl;
+		if (u == v) {
+			cout<<1<<endl;
+			cout<<u+1<<endl;
 			continue;
 		}
 
-		vector<pair<int, int>> printar;
-		while (1) {
-			printar.push_back(dest);
-			if (dest.second == u) {
-				break;
+		sufix = "";
+		memset(visitedMOV, 0, sizeof(int) * nMovies);
+		memset(visitedACT, 0, sizeof(int) * nActors);
+		target = v;
+		int result = dfsAct(u);
+
+
+		if (result == 101) {
+			cout<<-1<<endl;
+		} else {
+			string s;
+			int tempU = u+101;
+			int count = 0;
+			while (tempU != -1) {
+				if (count%2) {
+					s += to_string(tempU+1) + " ";
+				} else {
+					s += to_string(tempU-100) + " ";
+				}
+
+				tempU = nextValue[tempU];
+				count++;
 			}
-
-			dest = parent[dest.first];
+			
+			cout<<result<<endl;
+			cout<<s+sufix<<endl;
+			memo[{min(u, v), max(u, v)}] = {result, s.substr(2, s.size()-2)};
 		}
-
-		reverse(printar.begin(), printar.end());
-		cout<<printar.size()<<endl;
-
-		for (int i = 0; i < printar.size(); i++) {
-			if (i == 0) {
-				cout<<printar[i].second+1<<" ";
-			} else {
-				cout<<printar[i].first+1<<" "<<printar[i].second+1<<" ";
-			}
-		}
-		cout<<endl;
 	}
 
 	return 0;

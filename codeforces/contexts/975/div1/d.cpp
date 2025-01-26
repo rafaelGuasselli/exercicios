@@ -1,7 +1,6 @@
 #include<bits/stdc++.h>
 #define max(a, b) a > b ? a : b 
-#define min(a, b) a > b ? b : a 
-//#define int long long
+
 using namespace std;
  
 struct DSU {
@@ -30,7 +29,10 @@ struct DSU {
 };
  
 struct Block {
-	int rInEvenPos, rInOddPos, size;
+	int rInEvenPos = 0;
+	int rInOddPos = 0;
+	int size = 1;
+
 	int ideal() {
 		return rInEvenPos || (size %2 == 0 && rInOddPos);
 	}
@@ -39,11 +41,9 @@ struct Block {
 typedef struct Block Block;
 typedef struct DSU DSU;
  
- 
-
-int amountOfPicks = 0;
 int maxScore = 0;
 int amountIdeals = 0;
+int amountOfPicks = 0;
 
 DSU dsu;
 vector<int> values;
@@ -54,17 +54,8 @@ void mergeBlocks(int leftInd, int rightInd) {
 	Block& left = blocks[dsu.find(leftInd)];
 	Block& right = blocks[dsu.find(rightInd)];
 
-	if (left.size%2 + right.size%2 == 2) {
-		amountOfPicks--;
-	}
-
-	if (left.ideal()) {
-		amountIdeals--;
-	}
-
-	if (right.ideal()) {
-		amountIdeals--;
-	}
+	amountIdeals -= left.ideal() + right.ideal();
+	amountOfPicks -= (left.size%2 + right.size%2)/2;
 
 	if (left.size % 2 == 1) {
 		swap(right.rInEvenPos, right.rInOddPos);
@@ -74,10 +65,7 @@ void mergeBlocks(int leftInd, int rightInd) {
 	left.rInOddPos = right.rInOddPos = left.rInOddPos || right.rInOddPos;
 	right.size = left.size = right.size + left.size;
  
-	if (right.ideal()) {
-		amountIdeals++;
-	}
-
+	amountIdeals += right.ideal();
 	dsu.join(leftInd, rightInd);
 }
  
@@ -109,17 +97,11 @@ signed main() {
 			r = max(r, values[i]);
 		}
  
-		for (int i = 0; i < n; i++) {
-			blocks[i].rInEvenPos = 0;
-			blocks[i].rInOddPos = 0;
-			blocks[i].size = 1;
- 
-			if (values[i] == r) {
-				blocks[i].rInEvenPos = 1;
-				amountIdeals++;
-			}
+		for (int ind: order.begin()->second) {
+			blocks[ind].rInEvenPos = 1;
+			amountIdeals++;
 		}
-		
+
 		for (pair<int, vector<int>> current: order) {
 			int l = -current.first;
 			for (int pos: current.second) {

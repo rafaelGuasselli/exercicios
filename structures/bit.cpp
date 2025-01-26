@@ -1,7 +1,7 @@
-template<int size>
+template<int amountOfPicks>
 class BIT{
  public:
-	int range[size+1];
+	int range[amountOfPicks+1];
 	int read(int index) {
 		index++;
 		int runningSum = 0;
@@ -19,12 +19,12 @@ class BIT{
 	}
 
 	void clear() {
-		memset(range, 0, sizeof(int) * size);
+		memset(range, 0, sizeof(int) * amountOfPicks);
 	}
  
 	void update(int index, int x) {
 		index++;
-		while (index < size) {
+		while (index < amountOfPicks) {
 			range[index] += x;
 			int rightMostSetBit = (index & (-index));
 			index += rightMostSetBit;

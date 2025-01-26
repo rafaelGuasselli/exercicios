@@ -34,9 +34,6 @@ struct Block {
 	int ideal() {
 		return rInEvenPos || (size %2 == 0 && rInOddPos);
 	}
-	int maxPicks(){
-		return ceil(double(size)/double(2));
-	}
 };
  
 typedef struct Block Block;
@@ -57,7 +54,9 @@ void mergeBlocks(int leftInd, int rightInd) {
 	Block& left = blocks[dsu.find(leftInd)];
 	Block& right = blocks[dsu.find(rightInd)];
 
-	amountOfPicks -= left.maxPicks() + right.maxPicks();
+	if (left.size%2 + right.size%2 == 2) {
+		amountOfPicks--;
+	}
 
 	if (left.ideal()) {
 		amountIdeals--;
@@ -79,7 +78,6 @@ void mergeBlocks(int leftInd, int rightInd) {
 		amountIdeals++;
 	}
 
-	amountOfPicks += right.maxPicks();
 	dsu.join(leftInd, rightInd);
 }
  
@@ -121,11 +119,9 @@ signed main() {
 				amountIdeals++;
 			}
 		}
-
- 
+		
 		for (pair<int, vector<int>> current: order) {
 			int l = -current.first;
-
 			for (int pos: current.second) {
 				if (blocks[dsu.find(pos)].size == 1) {
 					amountOfPicks++;

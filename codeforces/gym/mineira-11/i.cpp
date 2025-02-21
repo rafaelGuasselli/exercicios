@@ -27,7 +27,7 @@ signed main() {
 		int i = num.first;
 
 		for (int j = 2*i; j <= biggest; j+=i) {
-			if (qtd[i] >= qtd[j] && i != j) {
+			if (qtd[i] >= qtd[j]) {
 				qtd[j] = qtd[i];
 			} 
 		}

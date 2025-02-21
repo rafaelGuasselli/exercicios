@@ -52,7 +52,7 @@ signed main() {
 		bfs(s1, dist1, adj1);
 		bfs(s2, dist2, adj2);
 
-
+		
 		int smallest = 1e9;
 		for (int i = 0; i < n; i++) {
 			if (dist1[i] % 2 == dist2[i] % 2) {

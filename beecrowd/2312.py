@@ -2,11 +2,11 @@ qtdPaises = int(input())
 
 medalhasPorPais = []
 for i in range(0, qtdPaises):
-	nome, ouros, pratas, bronzes = input().split()
-	ouros, pratas, bronzes = map(int, [ouros, pratas, bronzes])
-	medalhasPorPais.append((-qtdOuros, -qtdPratas, -qtdBronzes, nome))
+	nomePais, qtdOuros, qtdPratas, qtdBronzes = input().split()
+	qtdOuros, qtdPratas, qtdBronzes = map(int, [qtdOuros, qtdPratas, qtdBronzes])
+	medalhasPorPais.append((-qtdOuros, -qtdPratas, -qtdBronzes, nomePais))
 
 medalhasPorPais.sort()
 for pais in medalhasPorPais:
-	ouros, pratas, bronzes, nome = pais
+	ouros, prata, bronzes, nome = pais
 	print("{:s} {:n} {:n} {:n}".format(nome, -ouros, -prata, -bronzes))

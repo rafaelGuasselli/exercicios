@@ -3,7 +3,7 @@
 using namespace std;
 
 vector<vector<int>> adj = {{7, 8, 9}, {2, 4, 5}, {1, 3, 4, 5, 6}, {2, 5, 6}, {1, 2, 5, 7, 8}, {1, 2, 3, 4, 5, 6, 7, 8, 9}, {2, 3, 5, 8, 9}, {0, 4, 5, 8}, {0, 4, 5, 6, 7, 8, 9}, {0, 5, 6, 8}};	
-vector<ll> limits = {0, 45, 270, 1962, 15318, 141975, 990864, 9876753, 98765442, 987654321, 9876543210};
+vector<ll> xLimits = {0, 45, 270, 1962, 15318, 141975, 990864, 9876753, 98765442, 987654321, 9876543210};
 
 ll s, d;
 int possivel;
@@ -82,7 +82,7 @@ int main() {
 			numbersArray[i] = 0;
 		}
 
-		if (s <= limits[d]) {
+		if (s <= xLimits[d]) {
 			for (int i = 0; i < 10; i++) {
 				visited.set(i);
 				numbersArray[0] = numbersArray[0] * 10 + i; 

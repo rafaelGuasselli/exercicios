@@ -4,20 +4,10 @@ using namespace std;
 
 struct Point{
 	int x, y;
-
-	bool operator ==(Point p){
-		return x == p.x && y == p.y;
-	}
-
-	bool operator !=(Point p){
-		return x != p.x && y != p.y;
-	}
-
 	bool operator<(const Point &p) const {
 		return (x != p.x) ? (x < p.x) : (y < p.y);
 	}
 };
-
 
 int mod(int i, int m) {
 	return (((i%m)+m)%m);
@@ -25,13 +15,8 @@ int mod(int i, int m) {
 
 
 int lattices[605][205][205] = {0};
-int visited[605][205][205] = {0};
-int parent[605][205][205][3] = {0};
 
 map<char, pair<int, int>> direction = {{'E', {1, 0}}, {'W', {-1, 0}}, {'S', {0, -1}}, {'N', {0, 1}}, {'P', {0, 0}}}; 
-
-
-
 vector<Point> vertices;
 vector<Point> insidePoints;
 set<Point> borderPoints;
@@ -91,8 +76,8 @@ void buildCloud() {
 			for (int i = 0; i < v; i++) {
 				Point A = vertices[i];
 				Point B = vertices[mod(i + 1, v)];
-				bool cond1 = (A.y > y) != (B.y > y);
-				if (cond1) {
+
+				if ((A.y > y) != (B.y > y)) {
 					double intersectX = A.x + (double)(B.x - A.x) * (y - A.y) / (B.y - A.y);
 					if (x < intersectX) {
 						inside = !inside;
@@ -158,79 +143,17 @@ signed main() {
 			int nx = x + d.second.first;
 			int nny = y + 2*d.second.second;
 			int nnx = x + 2*d.second.first;
-			
 
 			if (z >= 605 || ny < 0 || ny >= 205 || nx < 0 || nx >= 205) {
 				continue;
 			}
 
-			if (visited[z+2][nny][nnx]) {
-				continue;
-			}
-
 			if ((lattices[z][ny][nx] == 0 && lattices[z+1][ny][nx] == 0 && lattices[z+1][nny][nnx] == 0 && lattices[z+2][nny][nnx] == 0) || d.first == 'P') {
-				visited[z+2][nny][nnx] = 1;
-				parent[z+2][nny][nnx][0] = z;
-				parent[z+2][nny][nnx][1] = y;
-				parent[z+2][nny][nnx][2] = x; 
-				
+				lattices[z+2][nny][nnx] = 1;
 				q.push({z+2, nny, nnx});
 			}
 		} 
 	}
-
-	return 0;
-
-	int final_z = -1;
-	for (int z = 0; z < 605; z++) {
-		if (visited[z][yf][xf]) {
-			final_z = z;
-			break;
-		}
-	}
-
-	if (final_z != -1) {
-		int cur_z = final_z, cur_y = yf, cur_x = xf;
-		while (!(cur_z == 0 && cur_y == yi && cur_x == xi)) {
-			lattices[cur_z][cur_y][cur_x] = 2;
-			int pz = parent[cur_z][cur_y][cur_x][0];
-			int py = parent[cur_z][cur_y][cur_x][1];
-			int px = parent[cur_z][cur_y][cur_x][2];
-			cur_z = pz;
-			cur_y = py;
-			cur_x = px;
-			cout<<cur_z<<" "<<cur_y<<" "<<cur_x<<endl;
-		}
-		lattices[0][yi][xi] = 2;
-	}
-
-	int size = 40;
-	for (int z = 0; z <= 10; z++) {
-		cout<<z<<endl;
-		for (int y = size; y >= 0; y--) {
-			for (int x = 0; x <= size; x++) {
-				if (x == xf && y == yf) {
-					if (lattices[z][y][x]) {
-						cout<<"b ";
-					} else {
-						cout<<"f ";
-					}
-
-					continue;
-				} 
-				
-				cout<<lattices[z][y][x]<<" ";
-				
-			}
-			cout<<endl;
-		}
-
-		cout<<endl;
-	}
-
-
-	cout<<"fim"<<endl;
-
 
 	return 0;
 }

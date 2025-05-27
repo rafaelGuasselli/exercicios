@@ -23,26 +23,59 @@ for i in range(1, len(mudanca)):
 		mudancaAtual = mudanca[i]
 mudancasUnicas.append(mudancaAtual)
 
-print(mudancasUnicas)
 if len(mudancasUnicas) > 2:
 	print("*")
-elif len(mudancaAtual) == 1:
-	print(list(range(n, 0, -1)))
-elif len(mudancasUnicas) == 2 and mudanca[0][2] and not mudanca[1][2]:
-	possivel = [i for i in range(1, n+1) if i not in a]
-	left = [i for i in possivel if i in possivel and i >= a[mudanca[0][0]] and i <= a[mudanca[0][1]]]
-	right = [i for i in possivel if i in possivel and i <= a[mudanca[1][0]] and i >= a[mudanca[1][1]]]
-
-	limite = mudanca[1][0]
+elif len(mudancasUnicas) == 1:
+	possivel = 1
+	for i in range(n):
+		if a[i] != i+1 and a[i] != 0:
+			possivel = 0
+			break
+		
+	if possivel:
+		print(*list(range(n, 0, -1)))
+	else:
+		print("*")
+elif len(mudancasUnicas) == 2 and mudancasUnicas[0][2] and not mudancasUnicas[1][2]:
+	marcado = [0 for i in range(0, n+1)]
 	for i in range(n):
 		if a[i] != 0:
-			if i < limite:
-				val = left.pop(0)
-				a[i] = left.pop(0)
-				
-			else:
-				a[i] = right.pop(0)
-	print(left)
-	print(right)
+			marcado[a[i]] = 1
+	
+	possivel = 1
+	minNext = 0
+
+	for i in range(mudancasUnicas[0][0], mudancasUnicas[0][1]):
+		if a[i] == 0:
+			while marcado[minNext] and minNext < n-1:
+				minNext += 1
+
+			if marcado[minNext]:
+				possivel = 0
+				break
+
+			a[i] = minNext
+			marcado[minNext] = 1
+		minNext = a[i]+1
+
+	maxNext = n
+	for i in range(mudancasUnicas[1][0]+1, n):
+		if a[i] == 0:
+			while maxNext > 1 and marcado[maxNext]:
+				maxNext -= 1
+
+			if marcado[maxNext]:
+				possivel = 0
+				break
+
+			a[i] = maxNext
+			marcado[maxNext] = 1
+		maxNext = a[i]-1
+
+	if possivel:
+		print(*a)
+	else:
+		print("*")
+
 else:
 	print("*")

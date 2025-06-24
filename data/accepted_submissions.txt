@@ -1,0 +1,223 @@
+2111-C Equal Values
+2091-C Combination Lock
+2104-B Move to the End
+1352-E Special Elements
+2116-A Gellyfish and Tricolor Pansy
+2033-B Sakurako and Water
+2035-B Everyone Loves Tres
+2042-B Game with Colored Marbles
+2047-B Replace Character
+2048-B Kevin and Permutation
+2060-C Game of Mathletes
+2062-B Clockwork
+2072-B Having Been a Treasurer in the Past, I Help Goblins Deceive
+2085-A Serval and String Theory
+2102-A Dinner Time
+2102-B The Picky Cat
+2106-B St. Chroma
+2110-B Down with Brackets
+2114-B Not Quite a Palindromic String
+2067-B Two Large Bags
+2069-B Set of Strangers
+2072-C Creating Keys for StORages Has Become My Main Skill
+2085-B Serval and Final MEX
+2091-D Place of the Olympiad
+105505-L Latin Squares
+2094-E Boneca Ambalabu
+2114-C Need More Arrays
+2114-A Square Year
+2109-B Slice to Survive
+105925-H Binary Palindromic Harmony
+105925-D Quantum Decoherence
+105925-A Ambiguous Schrödinger Cat
+105925-L qPhones Production Line
+105925-B Periodic Search
+105505-E Evereth Expedition
+1721-B Deadly Laser
+1984-A Strange Splitting
+1982-B Collatz Conjecture
+2050-C Uninteresting Number
+2106-C Cherry Bomb
+1696-A NIT orz!
+2098-A Vadim's Collection
+104945-F Programming-trampoline-athlon!
+2065-E Skibidus and Rizz
+2065-D Skibidus and Sigma
+2065-B Skibidus and Ohio
+2065-A Skibidus and Amog'u
+2108-C Neo's Escape
+2108-B SUMdamental Decomposition
+2108-A Permutation Warm-Up
+2093-C Simple Repetition
+2093-B Expensive Number
+2094-C Brr Brrr Patapim
+2096-E Wonderful Teddy Bears
+103640-I Invested Money
+103640-F Fields Division
+103640-F Fields Division
+103640-J Joining Pairs
+103640-K KIARA is a Recursive Acronym
+103640-C Cyclists versus Clouds
+103640-C Cyclists versus Clouds
+2084-C You Soared Afar With Grace
+2084-C You Soared Afar With Grace
+104736-G GPS on a Flat Earth
+104736-G GPS on a Flat Earth
+104736-G GPS on a Flat Earth
+104736-G GPS on a Flat Earth
+104736-F Forward and Backward
+104736-F Forward and Backward
+104736-I Inversions
+104736-C Candy Rush
+104736-C Candy Rush
+104736-C Candy Rush
+104736-I Inversions
+104736-M Meeting Point
+104736-B Blackboard Game
+104736-D Deciphering WordWhiz
+2092-C Asuna and the Mosquitoes
+2092-B Lady Bug
+2092-A Kamilka and the Sheep
+105053-F Fair Distribution
+2060-B Farmer John's Card Game
+2042-A Greedy Monocarp
+2069-A Was there an Array?
+2062-C Cirno and Operations
+2027-B Stalin Sort
+1941-B Rudolf and 121
+2065-A Skibidus and Amog'u
+2014-C Robin Hood in Town
+2009-C The Legend of Freya the Frog
+1931-C Make Equal Again
+2067-A Adjacent Digit Sums
+1997-C Even Positions
+1968-C Assembly via Remainders
+2002-B Removals Game
+2055-A Two Frogs
+1829-E The Lakes
+2008-D Sakurako's Hobby
+1033-A King Escape
+1944-A Destroying Bridges
+2029-B Replacement
+2055-B Crafting
+2056-A Shape Perimeter
+2059-D Graph and Graph
+2059-C Customer Service
+2032-B Medians
+2032-B Medians
+1975-B 378QAQ and Mocha's Array
+1998-B Minimize Equal Sum Subarrays
+2061-A Kevin and Arithmetic
+2044-D Harder Problem
+2043-B Digits
+2005-B2 The Strict Teacher (Hard Version)
+2005-B1 The Strict Teacher (Easy Version)
+2062-A String
+2059-B Cost of the Array
+2059-A Milya and Two Arrays
+2050-B Transfusion
+1999-B Card Game
+2004-B Game with Doors
+2060-A Fibonacciness
+2019-F Max Plus Min Plus Size
+2019-F Max Plus Min Plus Size
+2018-D Max Plus Min Plus Size
+2018-D Max Plus Min Plus Size
+2063-B Subsequence Update
+2063-A Minimal Coprime
+2037-C Superultra's Favorite Permutation
+2051-C Preparing for the Exam
+2057-B Gorilla and the Exam
+2053-A Tender Carpenter
+2040-B Paint a Strip
+2057-A MEX Table
+2039-B Shohag Loves Strings
+2050-A Line Breaks
+2018-C Tree Pruning
+2019-E Tree Pruning
+2019-D Speedbreaker
+1954-D Colored Balls
+1954-D Colored Balls
+1954-D Colored Balls
+1954-D Colored Balls
+1954-D Colored Balls
+221-D Little Elephant and Array
+2036-E Reverse the Rivers
+104518-C Sales
+104518-B Potato War 1
+104518-A Sum of Odds
+2036-D I Love 1543
+2036-C Anya and 1100
+2036-B Startup
+2036-A Quintomania
+105327-K Karamell
+105327-K Karamell
+105327-H Harmonics with Interference
+105327-L Lecographically Maximum
+2026-C Action Figures
+105327-E Enigma of the Jewelry Case
+105327-F Fractions are better when continued
+105327-A Attention to the Meeting
+2026-A Perpendicular Segments
+2019-C Cards Partition
+1873-C Target Practice
+1873-D 1D Eraser
+1873-B Good Kid
+1873-A Short Sort
+1915-F Greetings
+1915-F Greetings
+1915-D Unnatural Language Processing
+1915-C Can I Square?
+1915-B Not Quite Latin Square
+1915-A Odd One Out
+2022-B Kar Salesman
+2023-A Concatenation of Arrays
+1201-A Important Exam
+977-A Wrong Subtraction
+1030-A In Search of an Easy Problem
+110-A Nearly Lucky Number
+281-A Word Capitalization
+112-A Petya and Strings
+263-A Beautiful Matrix
+282-A Bit++
+8-B Obsession with Robots
+1986-C Update Queries
+1986-D Mathematical Problem
+1978-C Manhattan Permutations
+2024-B Buying Lemonade
+2024-A Profitable Interest Rate
+2030-C A TRUE Battle
+2030-B Minimise Oneness
+2030-A A Gift From Orangutan
+2025-D Attribute Checks
+2025-D Attribute Checks
+2025-D Attribute Checks
+2025-D Attribute Checks
+2025-C New Game
+2025-C New Game
+2025-B Binomial Coefficients, Kind Of
+2025-A Two Screens
+2022-A Bus to Pénjamo
+2019-B All Pairs Segments
+2019-A Max Plus Size
+2005-A Simple Palindrome
+105327-H Harmonics with Interference
+2003-C Turtle and Good Pairs
+2003-C Turtle and Good Pairs
+2003-B Turtle and Piggy Are Playing a Game 2
+2003-A Turtle and Good Strings
+1985-D Manhattan Circle
+1990-A Submission Bait
+1992-C Gorilla and Permutation
+105164-G Granitus Stone Towers
+105216-M Maximizing the Sauce
+105216-M Maximizing the Sauce
+1988-B Make Majority
+1988-A Split the Multiset
+1986-C Update Queries
+1986-F Non-academic Problem
+1986-B Matrix Stabilization
+1986-A X Axis
+1978-B New Bakery
+1978-A Alice and Books
+1968-A Maximize?

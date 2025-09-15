@@ -2,7 +2,6 @@ in.txt
 out.txt
 *.out
 *.exe
-.vscode
 test.cpp
 run
 current

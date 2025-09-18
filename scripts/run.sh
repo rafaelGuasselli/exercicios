@@ -30,6 +30,7 @@ case "$ext" in
     $py "$file" < temp/in
     ;;
   cpp)
+	g++ $file -o ./temp/a.out
     if [[ ! -x ./temp/a.out ]]; then
       echo "Missing executable ./temp/a.out. Compile first (e.g., scripts/compile.sh $file)." >&2
       exit 1

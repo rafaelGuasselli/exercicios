@@ -13,7 +13,7 @@
 			"typedef pair<int, int> pii;",
 			"typedef vector<int> vi;",
 			"",
-			"int main() {",
+			"signed main() {",
 			"\tcin.tie(0)->sync_with_stdio(0);",
 			"\tcin.exceptions(cin.failbit);",
 			"",

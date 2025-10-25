@@ -1,25 +1,24 @@
 {
-	"version": "0.2.0",
-
-	"configurations": [
-		{
-			"name": "C/C++ Runner: Debug Session",
-			"type": "cppdbg",
-			"request": "launch",
-			"args": ["<", "in.txt"],
-			"stopAtEntry": false,
-			"externalConsole": false,
-			"cwd": "/home/rafael/personal/exercicios",
-			"program": "/home/rafael/personal/exercicios/a.out",
-			"MIMode": "gdb",
-			"miDebuggerPath": "gdb",
-			"setupCommands": [
-				{
-					"description": "Enable pretty-printing for gdb",
-					"text": "-enable-pretty-printing",
-					"ignoreFailures": true
-				}
-			]
-		}
-	]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": false,
+      "cwd": "/home/rafaelguasselli/Documents/maratona/judges/codeforces/contexts/1060-div2",
+      "program": "/home/rafaelguasselli/Documents/maratona/judges/codeforces/contexts/1060-div2/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
 }

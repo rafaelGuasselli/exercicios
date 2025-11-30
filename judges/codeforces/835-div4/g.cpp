@@ -22,11 +22,12 @@ vector<pair<int, int>> adj[100005];
 int xorA[100005];
 int xorB[100005];
 
-void dfs(int u, int p, int x, int* xorX) {
+void dfs(int u, int p, int x, int* xorX, int avoid) {
 	xorX[u] = x;
 	for (auto [w, v]: adj[u]) {
 		if (v == p) continue;
-		dfs(v, u, x^w, xorX);
+		if (v == avoid) continue;
+		dfs(v, u, x^w, xorX, avoid);
 	}
 }
 
@@ -40,7 +41,7 @@ signed main() {
 		int n, a, b; cin>>n>>a>>b; a--; b--;
 		for (int i = 0; i < n; i++) {
 			adj[i].clear();
-			xorB[i] = xorA[i] = 0;
+			xorB[i] = xorA[i] = -1;
 		}
 
 		for (int i = 0; i < n-1; i++) {
@@ -50,18 +51,20 @@ signed main() {
 			adj[v].push_back({w, u});
 		}
 
-		dfs(a, -1, 0, xorA);
-		dfs(b, -1, 0, xorB);
+		dfs(a, -1, 0, xorA, b);
+		dfs(b, -1, 0, xorB, -1);
 
-		int  possible = xorA[b]==0;
+		int  possible = xorB[a]==0;
 		map<int, int> bMap;
 		for (int i = 0; i < n; i++) {
+			if(xorB[i] == -1) continue;
 			if (i != b) {
 				bMap[xorB[i]] = 1;
 			}
 		}
 
 		for (int i = 0; i < n; i++) {
+			if(xorA[i] == -1) continue;
 			if(i == b) continue;
 			if (bMap.count(xorA[i])) {
 				possible = 1;

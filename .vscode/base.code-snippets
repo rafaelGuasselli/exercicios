@@ -30,5 +30,15 @@
 			"}"
 		],
 		"description": "Boilerplate for competitive coding"
+	},
+	"basepy": {
+		"scope": "python",
+		"prefix": "base",
+		"body": [
+			"t=int(input())",
+			"while t:",
+			"\tt-=1"
+		],
+		"description": "Boilerplate for competitive coding"
 	}
 }

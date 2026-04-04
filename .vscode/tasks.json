@@ -55,6 +55,45 @@
 				"cwd": "${workspaceFolder}"
 			},
 			"problemMatcher": []
-		}
+		},
+		{
+            "label": "Windows - run debug on",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-ExecutionPolicy", "Bypass",
+                "-File", "${workspaceFolder}/scripts/run.ps1",
+                "-DebugMode",
+                "${file}"
+            ],
+            "group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated",
+				"clear": true,
+				"showReuseMessage": false,
+				"echo": false
+			},
+            "problemMatcher": []
+        },
+        {
+            "label": "Windows - run debug off",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-ExecutionPolicy", "Bypass",
+                "-File", "${workspaceFolder}/scripts/run.ps1",
+                "${file}"
+            ],
+            "group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated",
+				"clear": true,
+				"showReuseMessage": false,
+				"echo": false
+			},
+            "problemMatcher": []
+        }
 	]
 }

@@ -1,10 +1,3 @@
-def biggestGap(a):
-	bgap = 0
-	for i in range(1, len(a)):
-		gap = abs(a[i]-a[i-1])
-		bgap = max(bgap, gap)
-	return bgap
-
 t=int(input())
 while t:
 	t-=1
@@ -57,7 +50,9 @@ while t:
 		gapB = 2 * rprefix[ir]
 		gapC = suffix[air] if air < n else 0
 		gapD = abs(a[air] - 2 * a[il]) if air < n else 0
-		smallestBgap = min(smallestBgap, max([gapA, gapB, gapC, gapD]))
+		gapE = prefix[bil]
+
+		smallestBgap = min(smallestBgap, max([gapA, gapB, gapC, gapD, gapE]))
 
 	for i in range(l-1, -1, -1):
 		il = l-1
@@ -69,7 +64,8 @@ while t:
 		gapB = 2 * rsuffix[ir]
 		gapC = prefix[air] if air >= 0  else 0
 		gapD = abs(a[air] - 2 * a[il]) if air >=0 else 0
+		gapE = suffix[bil]
 
-		smallestBgap = min(smallestBgap, max([gapA, gapB, gapC, gapD]))
+		smallestBgap = min(smallestBgap, max([gapA, gapB, gapC, gapD, gapE]))
 
 	print(smallestBgap)
